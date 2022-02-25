@@ -20,7 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-
+/**
     private EditText mStudent_Id;
     private EditText mPassword;
     private Button mLoginButton;
@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("tag",t.getMessage());
             }
         });
-    }
+    }*/
 
 
 
