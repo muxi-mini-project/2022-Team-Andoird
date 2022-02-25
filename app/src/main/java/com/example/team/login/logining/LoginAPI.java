@@ -4,6 +4,7 @@ package com.example.team.login.logining;
 
 import retrofit2.Call;//不加这个可能LoginResponse会出错
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface LoginAPI {
@@ -15,4 +16,6 @@ public interface LoginAPI {
 
     @POST("login")
     Call<LoginResponse> postLogin(@Body LoginUser loginUser);
+
+
 }
