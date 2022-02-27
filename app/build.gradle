@@ -31,9 +31,9 @@ android {
             res.srcDirs = [
                     //'src/main/res/layout/weather',
 
-                    'src/main/res/layout/login',
+                    'src/main/res/view/login',
 
-                    'src/main/res/layout',
+                    'src/main/res/view',
 
                     'src/main/res']
         }
