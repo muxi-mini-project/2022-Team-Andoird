@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Login_over extends AppCompatActivity {
+    private EditText nickname;
     //权限请求
     private RxPermissions rxPermissions;
 
