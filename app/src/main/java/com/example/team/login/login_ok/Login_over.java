@@ -155,7 +155,7 @@ public class Login_over extends AppCompatActivity {
                 filename + ".jpg");
         Intent takePhotoIntent = CameraUtils.getTakePhotoIntent(this, outputImagePath);
         // 开启一个带有返回值的Activity，请求码为TAKE_PHOTO
-        startActivityForResult(takePhotoIntent,1);//???????
+        startActivityForResult(takePhotoIntent,TAKE_PHOTO);//???????
     }
 
     /**

@@ -25,6 +25,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    //文件夹的创建
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    //'src/main/res/layout/weather',
+
+                    'src/main/res/layout/login',
+
+                    'src/main/res/layout',
+
+                    'src/main/res']
+        }
+    }
 }
 
 dependencies {
