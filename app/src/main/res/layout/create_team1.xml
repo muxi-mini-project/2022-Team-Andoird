@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:layout_width="69dp"
+        android:layout_height="66dp"
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/create_team4" />
+
+    <TextView
+        android:layout_width="335dp"
+        android:layout_height="74dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:text="创建你的新团队"
+        android:textSize="45dp"/>
+
+    <ImageButton
+        android:id="@+id/ct_ib1"
+        android:layout_width="60pt"
+        android:layout_height="60pt"
+        android:layout_marginTop="44dp"
+        android:src="@drawable/create_team3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击设置你的头像"/>
+
+    <EditText
+        android:id="@+id/ct_et1"
+        android:layout_width="258dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:text="设置你的团队昵称" />
+
+    <EditText
+        android:id="@+id/ct_et2"
+        android:layout_width="259dp"
+        android:layout_height="166dp"
+        android:layout_marginBottom="30dp"
+        android:text="介绍你的团队" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left">
+
+        <ImageButton
+            android:id="@+id/ct_ib2"
+            android:layout_width="220dp"
+            android:layout_height="60dp"
+            android:background="@drawable/create_team1" />
+
+        <ImageButton
+            android:id="@+id/ct_ib3"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:background="@drawable/create_team2" />
+    </LinearLayout>
+
+</LinearLayout>
