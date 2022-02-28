@@ -1,6 +1,7 @@
 package com.example.team.login.logining;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;不要这个，改为下面的
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,22 +22,45 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-/**
+
     private EditText mStudent_Id;
     private EditText mPassword;
     private Button mLoginButton;
+    private CheckBox mRemember;
+
+    private String student_id;
+    private String password;
+
+    public static String saved;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String student_id;
-        String password;
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //获得SharedPreferences，并创建文件名为saved
+        SharedPreferences sp = getSharedPreferences("saved", 0);
+        //获得Editor对象，用于储存用户信息
+        SharedPreferences.Editor editor = sp.edit();
+        //判断是否为初次登录
+        saved=sp.getString("saved",null);
+        if (saved!= null){
+            Intent intent = new Intent(LoginActivity.this, ddd.class);//
+            startActivity(intent);
+            finish();
+        }
+
+        //重新登录,如果之前记住过密码，直接先导入。
         mStudent_Id=(EditText) findViewById(R.id.);
         mPassword=(EditText)findViewById(R.id.);
-
+        if(sp.getString("account",student_id) !=null
+                && sp.getString("password",password) !=null){
+            mStudent_Id.setText(sp.getString("account",student_id));
+            mPassword.setText(sp.getString("password",password));
+        }
+       //
+        mRemember=(CheckBox)findViewById(R.id.);
         mLoginButton=(Button) findViewById(R.id.);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -43,12 +68,23 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 student_id=mStudent_Id.getText().toString();
                 password=mPassword.getText().toString();
+                //保存密码
+                if(mRemember.isChecked()){
+                    editor.putString("account",student_id);
+                    editor.putString("password",password);
+                    editor.commit();
+                    editor.apply();
+                }
+                else{
+                    //啥也不干
+                }
                 WebRequest(student_id,password);
             }
         });
 
 
     }
+    //网络请求
     private void WebRequest(String student_id,String password) {
         //api实例
         Retrofit retrofit = new Retrofit.Builder()
@@ -68,9 +104,21 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(LoginActivity.this,"登陆成功",Toast.LENGTH_SHORT).show();
-                    Intent intent1=new Intent(LoginActivity.this, Login_over.class);
-                    startActivity(intent1);
+                    Intent intent=new Intent(LoginActivity.this, Login_over.class);
+                    startActivity(intent);
+                    //?????
+                    saved=response.body().getNickname();
+                    //保存初次是否为登录数据，
+                    SharedPreferences sharedPreferences = getSharedPreferences("saved",0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("saved",saved);
+                    editor.commit();
+                    editor.apply();
                 }
+                else{
+                Toast.makeText(LoginActivity.this,"账号或密码错误",Toast.LENGTH_SHORT).show();
+                }
+
 //                if (response != null && response.body() != null){
 //
 //                    //判断是否初入
@@ -97,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("tag",t.getMessage());
             }
         });
-    }*/
+    }
 
 
 

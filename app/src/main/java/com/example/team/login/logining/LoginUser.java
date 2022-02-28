@@ -3,6 +3,7 @@ package com.example.team.login.logining;
 public class LoginUser {
     private String student_id;
     private String password;
+    private String id;
 
 
     public LoginUser(String id, String password) {
