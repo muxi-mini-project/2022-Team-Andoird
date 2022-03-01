@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/background1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageButton
+        android:id="@+id/pi_ib1"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="66dp"
+        android:background="@drawable/personal_information2" />
+
+    <TextView
+        android:layout_width="41dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="昵称" />
+
+    <ImageButton
+        android:id="@+id/pi_ib2"
+        android:layout_width="392dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/personal_information3" />
+
+    <ImageButton
+        android:id="@+id/pi_ib3"
+        android:layout_width="392dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/personal_information4" />
+
+    <ImageButton
+        android:id="@+id/pi_ib4"
+        android:layout_width="392dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/personal_information5" />
+
+
+</LinearLayout>
