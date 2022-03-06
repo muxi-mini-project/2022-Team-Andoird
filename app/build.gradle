@@ -29,7 +29,7 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
-                    //'src/main/res/layout/weather',
+                    'src/main/res/view/home_page',
 
                     'src/main/res/view/login',
 

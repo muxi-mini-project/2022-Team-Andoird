@@ -13,7 +13,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.team.FirstActivity;
 import com.example.team.R;
+import com.example.team.home_page.HomePageActivity;
 import com.example.team.login.login_ok.Login_over;
 
 import retrofit2.Call;
@@ -37,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);//
 
         //获得SharedPreferences，并创建文件名为saved
         SharedPreferences sp = getSharedPreferences("saved", 0);
@@ -46,22 +48,22 @@ public class LoginActivity extends AppCompatActivity {
         //判断是否为初次登录
         saved=sp.getString("saved",null);
         if (saved!= null){
-            Intent intent = new Intent(LoginActivity.this, ddd.class);//
+            Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);//
             startActivity(intent);
             finish();
         }
 
         //重新登录,如果之前记住过密码，直接先导入。
-        mStudent_Id=(EditText) findViewById(R.id.);
-        mPassword=(EditText)findViewById(R.id.);
+        mStudent_Id=(EditText) findViewById(R.id.et5);
+        mPassword=(EditText)findViewById(R.id.et6);
         if(sp.getString("account",student_id) !=null
                 && sp.getString("password",password) !=null){
             mStudent_Id.setText(sp.getString("account",student_id));
             mPassword.setText(sp.getString("password",password));
         }
        //
-        mRemember=(CheckBox)findViewById(R.id.);
-        mLoginButton=(Button) findViewById(R.id.);
+        mRemember=(CheckBox)findViewById(R.id.key_remember);
+        mLoginButton=(Button) findViewById(R.id.enter);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
