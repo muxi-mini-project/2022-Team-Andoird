@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             mPassword.setText(sp.getString("password",password));
         }
        //
-        mRemember=(CheckBox)findViewById(R.id.key_remember);
+        //mRemember=(CheckBox)findViewById(R.id.key_remember);
         mLoginButton=(Button) findViewById(R.id.enter);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 student_id=mStudent_Id.getText().toString();
                 password=mPassword.getText().toString();
                 //保存密码
-                if(mRemember.isChecked()){
+              /**  if(mRemember.isChecked()){
                     editor.putString("account",student_id);
                     editor.putString("password",password);
                     editor.commit();
@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else{
                     //啥也不干
-                }
+                }*/
                 WebRequest(student_id,password);
             }
         });
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
     private void WebRequest(String student_id,String password) {
         //api实例
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://127.0.0.1:4523/mock/603295/login")
+                .baseUrl("http://119.3.2.168:9918/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         //对象，用body
@@ -115,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("saved",saved);
                     editor.commit();
-                    editor.apply();
+                    //editor.apply();
                 }
                 else{
                 Toast.makeText(LoginActivity.this,"账号或密码错误",Toast.LENGTH_SHORT).show();

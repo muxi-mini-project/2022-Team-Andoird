@@ -54,7 +54,7 @@
 
     <Button
         android:id="@+id/enter"
-        android:layout_width="411dp"
+        android:layout_width="400dp"
         android:layout_height="41dp"
         android:background="@drawable/login3"
         android:gravity="center_horizontal"
