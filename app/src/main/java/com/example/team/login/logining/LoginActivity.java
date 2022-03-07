@@ -13,7 +13,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.team.FirstActivity;
 import com.example.team.R;
+import com.example.team.home_page.HomePageActivity;
 import com.example.team.login.login_ok.Login_over;
 
 import retrofit2.Call;
@@ -37,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);//
 
         //获得SharedPreferences，并创建文件名为saved
         SharedPreferences sp = getSharedPreferences("saved", 0);
@@ -46,22 +48,22 @@ public class LoginActivity extends AppCompatActivity {
         //判断是否为初次登录
         saved=sp.getString("saved",null);
         if (saved!= null){
-            Intent intent = new Intent(LoginActivity.this, ddd.class);//
+            Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);//
             startActivity(intent);
             finish();
         }
 
         //重新登录,如果之前记住过密码，直接先导入。
-        mStudent_Id=(EditText) findViewById(R.id.);
-        mPassword=(EditText)findViewById(R.id.);
+        mStudent_Id=(EditText) findViewById(R.id.et5);
+        mPassword=(EditText)findViewById(R.id.et6);
         if(sp.getString("account",student_id) !=null
                 && sp.getString("password",password) !=null){
             mStudent_Id.setText(sp.getString("account",student_id));
             mPassword.setText(sp.getString("password",password));
         }
        //
-        mRemember=(CheckBox)findViewById(R.id.);
-        mLoginButton=(Button) findViewById(R.id.);
+        //mRemember=(CheckBox)findViewById(R.id.key_remember);
+        mLoginButton=(Button) findViewById(R.id.enter);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 student_id=mStudent_Id.getText().toString();
                 password=mPassword.getText().toString();
                 //保存密码
-                if(mRemember.isChecked()){
+              /**  if(mRemember.isChecked()){
                     editor.putString("account",student_id);
                     editor.putString("password",password);
                     editor.commit();
@@ -77,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else{
                     //啥也不干
-                }
+                }*/
                 WebRequest(student_id,password);
             }
         });
@@ -88,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
     private void WebRequest(String student_id,String password) {
         //api实例
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://127.0.0.1:4523/mock/603295/login")
+                .baseUrl("http://119.3.2.168:9918/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         //对象，用body
@@ -113,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("saved",saved);
                     editor.commit();
-                    editor.apply();
+                    //editor.apply();
                 }
                 else{
                 Toast.makeText(LoginActivity.this,"账号或密码错误",Toast.LENGTH_SHORT).show();

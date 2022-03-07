@@ -13,7 +13,7 @@ public interface LoginAPI {
      * 注解
      */
 
-    @POST("layout/login")
+    @POST("login")
     Call<LoginResponse> postLogin(@Body LoginUser loginUser);
 
 

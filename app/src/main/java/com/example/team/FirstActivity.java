@@ -1,4 +1,6 @@
 package com.example.team;
 
-public class FirstActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class FirstActivity extends AppCompatActivity {
 }

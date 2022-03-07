@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Team">
         <activity
-            android:name=".login.login_ok.Login_over"
+            android:name=".login.logining.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,8 +31,8 @@
         </activity>
         <!--一定要有，不然CrimeActivity打不开-->
 
-        <activity android:name=".login.logining.LoginActivity">
-        </activity>
+        <activity android:name=".login.login_ok.Login_over"></activity>
+        <activity android:name=".FirstActivity"></activity>
         <!-- Android7.0以后读取文件需要配置Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
