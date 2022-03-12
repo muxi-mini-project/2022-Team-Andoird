@@ -12,24 +12,26 @@
     <ImageView
         android:id="@+id/iv2"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:src="@drawable/login1" />
+        android:layout_height="322dp"
+        android:src="@drawable/login6" />
 
     <EditText
         android:id="@+id/et5"
         android:layout_width="wrap_content"
         android:layout_height="59dp"
+        android:layout_marginTop="22dp"
         android:background="@drawable/login4_"
         android:gravity="center"
-        android:text="学号" />
+        android:hint="学号" />
 
     <EditText
         android:id="@+id/et6"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/login4_"
         android:gravity="center"
-        android:text="密码" />
+        android:hint="密码" />
 
 
     <LinearLayout
@@ -52,11 +54,12 @@
 
     </LinearLayout>
 
-    <Button
+    <ImageButton
         android:id="@+id/enter"
-        android:layout_width="400dp"
-        android:layout_height="41dp"
-        android:background="@drawable/login3"
+        android:layout_width="366dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/login5"
         android:gravity="center_horizontal"
         android:text="登录" />
 

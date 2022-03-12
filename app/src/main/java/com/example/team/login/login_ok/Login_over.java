@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 import com.example.team.R;
+import com.example.team.home_page.HomePageActivity;
 import com.example.team.login.login_ok.utils.SPUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -35,6 +37,7 @@ import java.util.Date;
 
 public class Login_over extends AppCompatActivity {
     private EditText nickname;
+    private Button mButton;
     //权限请求
     private RxPermissions rxPermissions;
 
@@ -69,6 +72,15 @@ public class Login_over extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_over);
+
+        mButton=(Button)findViewById(R.id.zhu_ce_over_8);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Login_over.this, HomePageActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ivHead = findViewById(R.id.zhu_ce_over_5);
 

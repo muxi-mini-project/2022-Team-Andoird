@@ -6,11 +6,13 @@ import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;不要这个，改为下面的
 import androidx.appcompat.app.AppCompatActivity;
 //import android.telecom.Call;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.team.FirstActivity;
@@ -27,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText mStudent_Id;
     private EditText mPassword;
-    private Button mLoginButton;
+    private ImageButton mLoginButton;
     private CheckBox mRemember;
 
     private String student_id;
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);//
+
 
         //获得SharedPreferences，并创建文件名为saved
         SharedPreferences sp = getSharedPreferences("saved", 0);
@@ -56,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         //重新登录,如果之前记住过密码，直接先导入。
         mStudent_Id=(EditText) findViewById(R.id.et5);
         mPassword=(EditText)findViewById(R.id.et6);
+        //隐藏密码
+        mPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         if(sp.getString("account",student_id) !=null
                 && sp.getString("password",password) !=null){
             mStudent_Id.setText(sp.getString("account",student_id));
@@ -63,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         }
        //
         //mRemember=(CheckBox)findViewById(R.id.key_remember);
-        mLoginButton=(Button) findViewById(R.id.enter);
+        mLoginButton=(ImageButton) findViewById(R.id.enter);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,25 +7,26 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:layout_gravity="left"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/ni_ib1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="left"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+
             android:src="@drawable/create_team4" />
 
         <TextView
-            android:layout_width="320dp"
-            android:layout_height="66dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:textSize="56dp"
             android:text="新建团队" />
 
     </LinearLayout>
@@ -33,36 +34,46 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/new_item1"/>
 
 
     <EditText
         android:id="@+id/ni_et1"
-        android:layout_width="376dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="23dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:text="项目名称" />
 
     <TextView
-        android:layout_width="376dp"
-        android:layout_height="44dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
         android:text="成员"
-        android:textSize="26dp"/>
+        android:textSize="25dp"/>
 
     <EditText
         android:id="@+id/ni_et2"
-        android:layout_width="376dp"
-        android:layout_height="111dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="12dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="88dp"
         android:text="项目介绍" />
 
     <ImageButton
         android:id="@+id/ni_ib2"
-        android:layout_width="288dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:src="@drawable/new_item3" />
+
 
 </LinearLayout>
