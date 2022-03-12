@@ -33,6 +33,7 @@
 
         <activity android:name=".login.login_ok.Login_over"></activity>
         <activity android:name=".FirstActivity"></activity>
+        <activity android:name=".home_page.HomePageActivity"></activity>
         <!-- Android7.0以后读取文件需要配置Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
