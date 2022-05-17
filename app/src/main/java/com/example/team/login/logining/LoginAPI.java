@@ -14,7 +14,6 @@ public interface LoginAPI {
      */
 
     @POST("login")
-    Call<LoginResponse> postLogin(@Body LoginUser loginUser);
-
+    Call<LoginResponse> postLogin(@Body LoginUser.DataDTO loginUser);
 
 }

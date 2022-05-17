@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_gravity="bottom|center_horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="366dp"
+        android:background="@drawable/td_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:text="新建任务"/>
+
+        <EditText
+            android:id="@+id/td_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:background="@drawable/td_et_background"
+            android:paddingLeft="5dp"
+            android:textSize="20dp"
+            android:hint="名称"/>
+
+        <Button
+            android:id="@+id/td_sl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="26dp"
+            android:background="@drawable/td_et_background"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="5dp"
+            android:text="开始时间"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/td_ddl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="26dp"
+            android:background="@drawable/td_et_background"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="5dp"
+            android:text="截止时间"
+            android:textSize="20dp" />
+        <!--
+        <Button
+            android:id="@+id/td_member"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:paddingLeft="5dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/td_et_background"
+            android:textSize="20dp"
+            android:text="成员"/>
+            -->
+        <EditText
+            android:id="@+id/td_member"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:paddingLeft="5dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/td_et_background"
+            android:textSize="20dp"
+            android:hint="成员"/>
+
+        <EditText
+            android:id="@+id/td_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:paddingLeft="5dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/td_et_background"
+            android:textSize="20dp"
+            android:hint="步骤"/>
+        <EditText
+            android:id="@+id/td_remark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:paddingLeft="5dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/td_et_background"
+            android:textSize="30dp"
+            android:hint="备注"/>
+        <!--
+        <Spinner
+            android:id="@+id/td_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="28dp"/>
+            -->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/td_false"
+            android:layout_width="121dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/td_false" />
+
+        <Button
+            android:id="@+id/td_true"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/td_true"/>
+
+    </LinearLayout>
+</LinearLayout>

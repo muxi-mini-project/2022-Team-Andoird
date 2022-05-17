@@ -1,44 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:background="@drawable/background1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background1"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-
-    <ImageButton
+    <!--圆形图片-->
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/pi_ib1"
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:layout_marginTop="66dp"
-        android:background="@drawable/personal_information2" />
+        android:onClick="changeAvatar2"
+        app:shapeAppearanceOverlay="@style/circleImageStyle"
+        app:srcCompat="@mipmap/tou_xiang" />
 
     <TextView
-        android:layout_width="41dp"
+        android:id="@+id/pi_ib5"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="昵称" />
+        android:layout_marginTop="16dp"
+        android:onClick="changeAvatar3"
+        android:text="昵称"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
     <ImageButton
         android:id="@+id/pi_ib2"
         android:layout_width="392dp"
         android:layout_height="66dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/personal_information3" />
 
     <ImageButton
         android:id="@+id/pi_ib3"
         android:layout_width="392dp"
         android:layout_height="70dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/personal_information4" />
 
     <ImageButton
         android:id="@+id/pi_ib4"
         android:layout_width="392dp"
         android:layout_height="66dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/personal_information5" />
 
 

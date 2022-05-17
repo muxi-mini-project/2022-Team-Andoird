@@ -1,66 +1,48 @@
 package com.example.team.home_page.home_pagefragment.Bean;
 
+import com.example.team.team.Bean.UserTeam;
+import com.example.team.teamwork.Bean.LookTaskData;
+
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 public class TaskData {
-    private UUID mId;
-    private String mTeam;
-    private String mTask;
-    private String mProject;
-    private Date mDate;
-    private boolean mSolved;
+    private String message;
 
-    //唯一值id
-    public TaskData(){
-        mId=UUID.randomUUID();
+    public String getMessage() {
+        return message;
     }
 
-    public UUID getId() {
-        return mId;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setId(UUID id) {
-        mId = id;
+    private int code;
+    private List<LookTaskData.TData> task;
+    private List<UserTeam.Team> team;
+
+    public int getCode() {
+        return code;
     }
 
-    public String getTeam() {
-        return mTeam;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public void setTeam(String team) {
-        mTeam = team;
+    public List<LookTaskData.TData> getTask() {
+        return task;
     }
 
-    public String getTask() {
-        return mTask;
+    public void setTask(List<LookTaskData.TData> task) {
+        this.task = task;
     }
 
-    public void setTask(String task) {
-        mTask = task;
+    public List<UserTeam.Team> getTeam() {
+        return team;
     }
 
-    public String getProject() {
-        return mProject;
-    }
-
-    public void setProject(String project) {
-        mProject = project;
-    }
-
-    public Date getDate() {
-        return mDate;
-    }
-
-    public void setDate(Date date) {
-        mDate = date;
-    }
-
-    public boolean isSolved() {
-        return mSolved;
-    }
-
-    public void setSolved(boolean solved) {
-        mSolved = solved;
+    public void setTeam(List<UserTeam.Team> team) {
+        this.team = team;
     }
 }

@@ -29,12 +29,11 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
+                    'src/main/res/view/team',
+                    'src/main/res/view/user',
                     'src/main/res/view/home_page',
-
                     'src/main/res/view/login',
-
                     'src/main/res/view',
-
                     'src/main/res']
         }
     }
