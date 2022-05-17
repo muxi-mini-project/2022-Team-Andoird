@@ -22,6 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 import com.example.team.R;
+import com.example.team.StatusBar;
 import com.example.team.home_page.HomePageActivity;
 import com.example.team.login.login_ok.utils.SPUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -35,8 +36,8 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Login_over extends AppCompatActivity {
-    private EditText nickname;
+public class Login_over extends StatusBar {
+
     private Button mButton;
     //权限请求
     private RxPermissions rxPermissions;
@@ -70,6 +71,10 @@ public class Login_over extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //设置状态栏透明
+        StatusBar_to_transparent(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_over);
 
@@ -182,7 +187,6 @@ public class Login_over extends AppCompatActivity {
             return;
         }
         startActivityForResult(CameraUtils.getSelectPhotoIntent(), SELECT_PHOTO);
-
     }
 
     /**
@@ -253,8 +257,6 @@ public class Login_over extends AppCompatActivity {
     private void showMsg(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
-
-
 }
 
 

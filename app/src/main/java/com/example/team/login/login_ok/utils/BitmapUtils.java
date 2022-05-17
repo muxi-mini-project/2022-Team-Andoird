@@ -2,9 +2,14 @@ package com.example.team.login.login_ok.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.util.Base64;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -90,4 +95,20 @@ public class BitmapUtils {
 
         return bitmap[0];
     }
+    /**
+     * 保存文件
+     * @param bitmap
+
+     * @throws IOException
+     */
+    public static File saveFile(Bitmap bitmap) throws IOException {
+        File dir = Environment.getExternalStorageDirectory();
+        File file = new File(dir, "new.jpg");
+        BufferedOutputStream baos = new BufferedOutputStream(new FileOutputStream(file));
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        baos.flush();
+        baos.close();
+        return  file;
+    }
+
 }
