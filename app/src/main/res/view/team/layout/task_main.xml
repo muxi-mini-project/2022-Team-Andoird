@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="36dp"
+        android:orientation="horizontal"
+        android:background="@color/purple">
+
+        <ImageButton
+            android:id="@+id/tm_return"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="33dp"
+            android:background="@mipmap/fan_hui2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="66dp"
+            android:text="任务"
+            android:textSize="36dp"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tm_one"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="26sp"
+            android:text="已完成"
+            android:textStyle="normal"/>
+
+        <TextView
+            android:id="@+id/tm_two"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="26sp"
+            android:text="未完成"
+            android:textStyle="normal"/>
+
+        <TextView
+            android:id="@+id/tm_three"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="26sp"
+            android:gravity="center"
+            android:text="全部"
+            android:textStyle="normal"/>
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/tm_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="520dp" />
+
+    <ImageButton
+        android:id="@+id/task_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:background="@drawable/task2"/>
+
+</LinearLayout>
