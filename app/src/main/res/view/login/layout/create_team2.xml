@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/create_team5"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:layout_width="241dp"
+        android:layout_height="219dp"
+        android:layout_marginTop="188dp" />
+
+    <LinearLayout
+        android:layout_width="362dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="188dp"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/ct_wechat"
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="0dp"
+            android:src="@drawable/ct_wechat" />
+
+        <ImageButton
+            android:id="@+id/ct_pyq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:src="@drawable/ct_pengyouquan" />
+
+        <ImageButton
+            android:id="@+id/ct_qq"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ct_qq" />
+
+        <ImageButton
+            android:id="@+id/ct_qqkj"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="35dp"
+            android:background="@drawable/ct_qqkongjian" />
+
+        <ImageButton
+            android:id="@+id/ct_more"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="35dp"
+            android:src="@drawable/ct_more" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
