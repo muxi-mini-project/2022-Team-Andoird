@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#ff9191ff</color>
     <color name="layout_color">#FFFBF2</color>
+    <color name="purple_new_project">#908cec</color>
+    <color name="gray_new_project">#e4e4e4</color>
 </resources>

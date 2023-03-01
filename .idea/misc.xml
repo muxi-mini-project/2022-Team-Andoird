@@ -3,6 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/home_page/drawable/button_new_project_purple.xml" value="0.181" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/home_page/layout/task2_page.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/home_page/layout/task3_page.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/home_page/layout/task_page.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/home_page/layout/team_page.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/home_page/layout/team_users.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/home_page/layout/user_team.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/login/layout-v26/new_item_new.xml" value="0.2833333333333333" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/login/layout/new_item_new.xml" value="0.136" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/drawable/button_newproject.xml" value="0.181" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/mt_recyclerview2.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/new_item.xml" value="0.264" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/new_item_old.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/task_dialog.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/task_dialog_date.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/task_item.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/task_main.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/task_new.xml" value="0.29791666666666666" />
+        <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/task_recyclerview.xml" value="0.29791666666666666" />
         <entry key="..\:/系统默认/桌面/Team/2022-Team-Andoird/app/src/main/res/view/home_page/layout/home_page_1.xml" value="0.25364583333333335" />
         <entry key="..\:/系统默认/桌面/Team/2022-Team-Andoird/app/src/main/res/view/login/layout/activity_login.xml" value="0.2115036231884058" />
         <entry key="..\:/系统默认/桌面/team (3)/Team/app/src/main/res/view/home_page/layout/task_page.xml" value="0.12310030395136778" />
