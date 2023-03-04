@@ -18,7 +18,7 @@ public class LoginUser {
 
     private int code;
     private String msg;
-    private DataDTO data;
+    private Data data;
 
     public int getCode() {
         return code;
@@ -36,15 +36,15 @@ public class LoginUser {
         this.msg = msg;
     }
 
-    public DataDTO getData() {
+    public Data getData() {
         return data;
     }
 
-    public void setData(DataDTO data) {
+    public void setData(Data data) {
         this.data = data;
     }
     //内部类
-    public static class DataDTO {
+    public static class Data {
         /**
          "id": 49,
          "student_id": "2021214599",
@@ -99,12 +99,12 @@ public class LoginUser {
             this.path = path;
         }
 
-        public DataDTO(String id, String password) {
+        public Data(String id, String password) {
             this.student_id = id;
             this.password = password;
         }
 
-        public DataDTO(String nickname) {
+        public Data(String nickname) {
             this.nickname = nickname;
         }
         public String getNickname() {

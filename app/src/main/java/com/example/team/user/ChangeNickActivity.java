@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 
 import com.example.team.Api;
@@ -23,14 +25,23 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class Change_nick extends StatusBar {
-    private static final String EXTRA_Nick = "com.example.team.home_page.user.nick2";
-    private EditText mChange_nick;
-    private ImageButton mImageButton;
-    private TextView mTextView;
+public class ChangeNickActivity extends StatusBar {
+    private static final String Extra_Nickname = "nickname";
+
+    private EditText et_nickName;
+    private Button btn_return;
+    private Button btn_finish;
+
     private String mNick;
-    private static CallBack mCallBack;
+
     private String token;
+
+//    public static void actionStart(Context context,String nickName){
+//        Intent intent = new Intent(context,ChangeNickActivity.class);
+//        intent.putExtra(Extra_Nickname,nickName);
+//        context.startActivityForResult()
+//    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // setCallback(HomePageActivity.this);
@@ -44,59 +55,47 @@ public class Change_nick extends StatusBar {
         //拿出token
         initWidgets();
 
-        mNick=getIntent().getStringExtra(EXTRA_Nick);
-        mImageButton=(ImageButton) findViewById(R.id.change1);
-        mImageButton.setBackgroundResource(R.mipmap.fan_hui);
-        mImageButton.setOnClickListener(new View.OnClickListener() {
+        //String nickName = getIntent().getStringExtra(EXTRA_NICKNAME);
+
+        btn_return = findViewById(R.id.btn_return);
+        btn_return.setBackgroundResource(R.mipmap.fan_hui);
+        btn_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
-        mChange_nick=(EditText) findViewById(R.id.change2);
-        mChange_nick.setText(mNick.toCharArray(),0,mNick.length());
+        et_nickName = (EditText) findViewById(R.id.et_nickName);
+        //et_nickName.setText(mNick.toCharArray(),0,mNick.length());
 
-        mTextView=(TextView)findViewById(R.id.change_ok);
-        mTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mNick=mChange_nick.getText().toString();
-                WebRequest1(mNick);
-                mCallBack.change_Nick(mNick);
-                //可结束该Activity
-                finish();
-            }
+        btn_finish = findViewById(R.id.btn_finish);
+        btn_finish.setOnClickListener(view -> {
+            String nickName = et_nickName.getText().toString();
+            changeNickRequest(nickName);
+            Intent intent = getIntent();
+            intent.putExtra(Extra_Nickname,nickName);
+            setResult(RESULT_OK,intent);
+            finish();
         });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-    }
-
-    public static Intent newIntent(Context context, String nick) {
-        Intent intent = new Intent(context, Change_nick.class);
-        intent.putExtra(EXTRA_Nick,nick);
-        return intent;
-    }
-    //为什么变为静态的可以使用
-    public static void setCallBack(CallBack callback){
-        mCallBack= callback;
     }
 
     private void initWidgets() {
         //fragment中得getActivity
-        SharedPreferences sharedPreferences2 = Change_nick.this.getSharedPreferences("Token", 0);
+        SharedPreferences sharedPreferences2 = getSharedPreferences("Token", 0);
         token = sharedPreferences2.getString("Token", null);
     }
 
-    private void WebRequest1(String nickname) {
+    private void changeNickRequest(String nickname) {
         //api实例
         Retrofit retrofit = Api.getInstance().getApi();
         //对象，用body
-        LoginUser.DataDTO mLoginUser = new LoginUser.DataDTO(nickname);
+        LoginUser.Data mLoginUser = new LoginUser.Data(nickname);
         //web实例
         InitAPI mInit = retrofit.create(InitAPI.class);
         //call实例
@@ -106,21 +105,19 @@ public class Change_nick extends StatusBar {
             @Override
             public void onResponse(Call<LoginUser> call, Response<LoginUser> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(Change_nick.this, "信息初始化成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangeNickActivity.this, "信息初始化成功", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(Change_nick.this, "信息初始化失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangeNickActivity.this, "信息初始化失败", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginUser> call, Throwable t) {
-                Toast.makeText(Change_nick.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChangeNickActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
                 //抛出异常
                 t.printStackTrace();
                 Log.e("tag", t.getMessage());
             }
-
         });
-
     }
 }
