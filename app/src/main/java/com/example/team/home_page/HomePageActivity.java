@@ -97,6 +97,11 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
             .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
             .skipMemoryCache(true);//不做内存缓存
 
+    public static void actionStart(Context context){
+        Intent intent = new Intent(context,HomePageActivity.class);
+        context.startActivity(intent);
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,7 +113,6 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page_1);
-
 
         //HeadPart
         mShapeableImageView = (ShapeableImageView) findViewById(R.id.home_page1);

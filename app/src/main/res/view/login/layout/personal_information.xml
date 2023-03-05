@@ -4,56 +4,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background1"
-    android:gravity="center_horizontal"
     android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_return"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@mipmap/back"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
 
     <!--圆形图片-->
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/pi_ib1"
+        android:id="@+id/avatar"
         android:layout_width="88dp"
         android:layout_height="88dp"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="26dp"
+        android:layout_gravity="center_horizontal"
         android:onClick="changeAvatar2"
         app:shapeAppearanceOverlay="@style/circleImageStyle"
         app:srcCompat="@mipmap/tou_xiang" />
 
     <TextView
-        android:id="@+id/pi_ib5"
-        android:layout_width="wrap_content"
+        android:id="@+id/nickName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:onClick="changeAvatar3"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:onClick="changeNickname"
         android:text="昵称"
         android:textColor="@color/black"
         android:textSize="30sp" />
 
-    <ImageButton
-        android:id="@+id/pi_ib2"
-        android:layout_width="392dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/personal_information3" />
+    <Button
+        android:id="@+id/btn_about"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/about"
+        android:paddingLeft="10dp"
+        android:text="关于我们"
+        android:textSize="24sp"
+        android:gravity="center_vertical"
+        android:drawablePadding="15dp"
+        android:layout_marginTop="50dp"
+        android:onClick="buttonClick"/>
 
-    <ImageButton
-        android:id="@+id/pi_ib3"
-        android:layout_width="392dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/personal_information4" />
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/update"
+        android:paddingLeft="10dp"
+        android:text="检查更新"
+        android:textSize="24sp"
+        android:gravity="center_vertical"
+        android:drawablePadding="15dp"
+        android:layout_marginTop="30dp"
+        android:onClick="buttonClick"/>
 
-    <ImageButton
-        android:id="@+id/pi_ib4"
-        android:layout_width="392dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/personal_information5" />
-
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/logout"
+        android:paddingLeft="5dp"
+        android:text="退出登录"
+        android:textSize="24sp"
+        android:gravity="center_vertical"
+        android:drawablePadding="15dp"
+        android:layout_marginTop="30dp"
+        android:onClick="buttonClick"/>
 
 </LinearLayout>

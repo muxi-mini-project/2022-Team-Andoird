@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Team">
         <activity
-            android:name=".FirstActivity"
+            android:name=".begin.FirstActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
         <activity android:name=".login.login_ok.Login_over"></activity>
         <activity android:name=".home_page.HomePageActivity"></activity>
         <activity android:name=".user.UserActivity"></activity>
-        <activity android:name=".user.Change_nick"></activity>
+        <activity android:name=".user.ChangeNickActivity"></activity>
         <activity android:name=".login.logining.LoginActivity"></activity>
         <activity android:name=".team.view.CreateTeamActivity"></activity>
         <activity android:name=".team.view.ShareTeamActivity"></activity>

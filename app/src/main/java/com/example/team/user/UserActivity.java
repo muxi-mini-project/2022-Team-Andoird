@@ -44,12 +44,14 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class UserActivity extends StatusBar implements CallBack {
+public class UserActivity extends StatusBar {
     //回调返回数据
     //成为静态的？？？？？？？？？？？？？？？？？？？
     private static Callback mCallback;
-    private static final String EXTRA_UserHead = "com.example.team.home_page.user.head";
-    private static final String EXTRA_UserNick = "com.example.team.home_page.user.nick";
+    private static final String EXTRA_AVATAR = "avatar";
+    private static final String EXTRA_NICKNAME = "nickName";
+
+    private static final int CHANGE_NICKNAME = 0;
     //权限请求
     private RxPermissions rxPermissions;
 
@@ -68,7 +70,7 @@ public class UserActivity extends StatusBar implements CallBack {
     //启动相册标识
     public static final int SELECT_PHOTO = 2;
 
-    private ShapeableImageView mShapeableImageView;
+    private ShapeableImageView avatarImageView;
     private TextView mNickname;
     private String mNick;
     private String image;
@@ -97,26 +99,21 @@ public class UserActivity extends StatusBar implements CallBack {
         setContentView(R.layout.personal_information);
 
         //接收HomePagerActivity的图片信息
-        image = getIntent().getStringExtra(EXTRA_UserHead);
-        mNick = getIntent().getStringExtra(EXTRA_UserNick);
-        mShapeableImageView = (ShapeableImageView) findViewById(R.id.pi_ib1);
+        image = getIntent().getStringExtra(EXTRA_AVATAR);
+        mNick = getIntent().getStringExtra(EXTRA_NICKNAME);
+
+        avatarImageView = (ShapeableImageView) findViewById(R.id.avatar);
 
         //可以不使用了
         displayImage3(image);
 
-        mNickname = (TextView) findViewById(R.id.pi_ib5);
-        mNickname.setText(mNick);
+        mNickname = (TextView) findViewById(R.id.nickName);
+        //mNickname.setText(mNick);
         //检查版本
         checkVersion();
 
         initWidgets();
         WebRequest1();
-
-        //取出缓存
-        /*String imageUrl = SPUtils.getString("imageUrl", null, this);
-        if (imageUrl != null) {
-            Glide.with(this).load(imageUrl).apply(requestOptions).into(mShapeableImageView);
-        }*/
     }
 
     @Override
@@ -228,31 +225,34 @@ public class UserActivity extends StatusBar implements CallBack {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
+            case CHANGE_NICKNAME:
+                String nickName = data.getStringExtra("nickname");
+                mNickname.setText(nickName);
             //拍照后返回
-            case TAKE_PHOTO:
-                if (resultCode == RESULT_OK) {
-                    //显示图片
-                    image = outputImagePath.getAbsolutePath();
-                    displayImage3(image);
-                    WebRequest2(outputImagePath);
-                }
-                break;
-            //打开相册后返回
-            case SELECT_PHOTO:
-                if (resultCode == RESULT_OK) {
-                    String imagePath = null;
-                    //判断手机系统版本号
-                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                        //4.4及以上系统使用这个方法处理图片
-                        imagePath = CameraUtils.getImageOnKitKatPath(data, this);
-                    } else {
-                        imagePath = CameraUtils.getImageBeforeKitKatPath(data, this);
-                    }
-                    //显示图片
-                    image = imagePath;
-                    displayImage3(image);
-                    WebRequest2(new File(image));
-                }
+//            case TAKE_PHOTO:
+//                if (resultCode == RESULT_OK) {
+//                    //显示图片
+//                    image = outputImagePath.getAbsolutePath();
+//                    displayImage3(image);
+//                    WebRequest2(outputImagePath);
+//                }
+//                break;
+//            //打开相册后返回
+//            case SELECT_PHOTO:
+//                if (resultCode == RESULT_OK) {
+//                    String imagePath = null;
+//                    //判断手机系统版本号
+//                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+//                        //4.4及以上系统使用这个方法处理图片
+//                        imagePath = CameraUtils.getImageOnKitKatPath(data, this);
+//                    } else {
+//                        imagePath = CameraUtils.getImageBeforeKitKatPath(data, this);
+//                    }
+//                    //显示图片
+//                    image = imagePath;
+//                    displayImage3(image);
+//                    WebRequest2(new File(image));
+//                }
                 break;
             default:
                 break;
@@ -267,7 +267,7 @@ public class UserActivity extends StatusBar implements CallBack {
             //SPUtils.putString("imageUrl", imagePath, this);
 
             //显示图片
-            Glide.with(this).load(imagePath).apply(requestOptions).into(mShapeableImageView);
+            Glide.with(this).load(imagePath).apply(requestOptions).into(avatarImageView);
 
             //压缩图片
             orc_bitmap = CameraUtils.compression(BitmapFactory.decodeFile(imagePath));
@@ -290,8 +290,8 @@ public class UserActivity extends StatusBar implements CallBack {
 
     public static Intent newIntent(Context context, String head, String nick) {
         Intent intent = new Intent(context, UserActivity.class);
-        intent.putExtra(EXTRA_UserHead, head);
-        intent.putExtra(EXTRA_UserNick, nick);
+//        intent.putExtra(EXTRA_UserHead, head);
+//        intent.putExtra(EXTRA_UserNick, nick);
         return intent;
     }
     /*public static Intent newIntent(Context context){
@@ -299,35 +299,34 @@ public class UserActivity extends StatusBar implements CallBack {
         return intent;
     }*/
 
-    /**
-     * 昵称
-     *
-     * @param view
+    /*
+    修改昵称
      */
-    public void changeAvatar3(View view) {
+    public void changeNickname(View view) {
         bottomSheetDialog = new BottomSheetDialog(this);
         bottomView = getLayoutInflater().inflate(R.layout.change_nickname, null);
         bottomSheetDialog.setContentView(bottomView);
+        //设置背景颜色
         bottomSheetDialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundColor(Color.TRANSPARENT);
 
-        TextView change_nick = bottomView.findViewById(R.id.change_nick);
-        TextView qu_xiao = bottomView.findViewById(R.id.qu_xiao);
+        //底部弹窗显示
+        bottomSheetDialog.show();
+
+        TextView changeNickname = bottomView.findViewById(R.id.changeNickName);
+        TextView cancel = bottomView.findViewById(R.id.cancel);
 
         //修改昵称
-        change_nick.setOnClickListener(v -> {
-            Intent intent = Change_nick.newIntent(UserActivity.this, mNick);
-            Change_nick.setCallBack(UserActivity.this);
-            startActivity(intent);
+        changeNickname.setOnClickListener(v -> {
+            //Intent intent = ChangeNickActivity.newIntent(UserActivity.this, mNick);
+            Intent intent = new Intent(UserActivity.this,ChangeNickActivity.class);
+            startActivityForResult(intent,CHANGE_NICKNAME);
             showMsg("修改昵称");
             bottomSheetDialog.cancel();
         });
         //取消
-        qu_xiao.setOnClickListener(v -> {
+        cancel.setOnClickListener(v -> {
             bottomSheetDialog.cancel();
         });
-
-        //底部弹窗显示
-        bottomSheetDialog.show();
     }
 
     private void initWidgets() {
@@ -355,7 +354,7 @@ public class UserActivity extends StatusBar implements CallBack {
                     mNickname.setText(mNick);
                     //网络url显示图片
                     Glide.with(UserActivity.this).load(avatar).apply(requestOptions)
-                            .into(mShapeableImageView);
+                            .into(avatarImageView);
 
                 } else {
                     Toast.makeText(UserActivity.this, "信息获取失败", Toast.LENGTH_SHORT).show();
@@ -412,9 +411,4 @@ public class UserActivity extends StatusBar implements CallBack {
         mCallback = callback;
     }
 
-    @Override
-    public void change_Nick(String string) {
-        mNick = string;
-        mNickname.setText(mNick);
-    }
 }

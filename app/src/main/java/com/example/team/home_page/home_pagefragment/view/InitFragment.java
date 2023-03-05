@@ -336,7 +336,7 @@ public class InitFragment extends DialogFragment {
         //api实例
         Retrofit retrofit = Api.getInstance().getApi();
         //对象，用body
-        LoginUser.DataDTO mLoginUser = new LoginUser.DataDTO(nickname);
+        LoginUser.Data mLoginUser = new LoginUser.Data(nickname);
         //web实例
         InitAPI mInit = retrofit.create(InitAPI.class);
         //call实例

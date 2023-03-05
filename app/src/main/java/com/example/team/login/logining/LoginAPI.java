@@ -13,7 +13,6 @@ public interface LoginAPI {
      * 注解
      */
 
-    @POST("login")
-    Call<LoginResponse> postLogin(@Body LoginUser.DataDTO loginUser);
+
 
 }
