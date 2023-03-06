@@ -32,8 +32,8 @@
 
         <activity android:name=".login.login_ok.Login_over"></activity>
         <activity android:name=".home_page.HomePageActivity"></activity>
-        <activity android:name=".user.UserActivity"></activity>
-        <activity android:name=".user.ChangeNickActivity"></activity>
+        <activity android:name=".user.view.UserActivity"></activity>
+        <activity android:name=".user.view.ChangeNickActivity"></activity>
         <activity android:name=".login.logining.LoginActivity"></activity>
         <activity android:name=".team.view.CreateTeamActivity"></activity>
         <activity android:name=".team.view.ShareTeamActivity"></activity>
@@ -44,10 +44,9 @@
         <!-- Android7.0以后读取文件需要配置Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.llw.changeavatar.fileprovider"
+            android:authorities="com.example.team.user.view.UserActivity.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <!-- 元数据 -->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"

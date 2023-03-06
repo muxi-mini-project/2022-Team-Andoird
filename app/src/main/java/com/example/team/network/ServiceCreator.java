@@ -1,5 +1,9 @@
 package com.example.team.network;
 
+import android.content.SharedPreferences;
+
+import com.example.team.login.logining.LoginActivity;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -20,6 +24,7 @@ public class ServiceCreator {
             return retrofit;
         }
     }
+
 
     //通过传入接口获取该接口的动态代理对象
     public static <T> T create(Class<T> serviceClass){

@@ -47,7 +47,7 @@ import com.example.team.login.logining.LoginUser;
 import com.example.team.team.Bean.UserTeam;
 import com.example.team.team.view.CreateTeamActivity;
 import com.example.team.team.view.JoinTeamActivity;
-import com.example.team.user.UserActivity;
+import com.example.team.user.view.UserActivity;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.Serializable;
@@ -119,9 +119,10 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
         mShapeableImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = UserActivity.newIntent(HomePageActivity.this, image, mNick);
+                Intent intent = new Intent(HomePageActivity.this,UserActivity.class);
+                //Intent intent = UserActivity.newIntent(HomePageActivity.this, image, mNick);
                 //变成静态的
-                UserActivity.setCallback(HomePageActivity.this);
+                //UserActivity.setCallback(HomePageActivity.this);
                 startActivity(intent);
             }
         });

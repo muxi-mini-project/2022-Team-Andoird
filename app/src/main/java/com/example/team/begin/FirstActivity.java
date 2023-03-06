@@ -35,7 +35,6 @@ public class FirstActivity extends StatusBar{
         StatusBar_to_transparent(this);
         //状态栏文字自适应
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_activity);
 
@@ -53,6 +52,9 @@ public class FirstActivity extends StatusBar{
         mViewPager.setAdapter(adapter);
     }
 
+    /*
+    判断是否为初次登陆
+     */
     private void isFirstLogin(){
         SharedPreferences sp = getSharedPreferences("data", Context.MODE_PRIVATE);
         String token = sp.getString("token",null);
@@ -61,6 +63,9 @@ public class FirstActivity extends StatusBar{
         }
     }
 
+    /*
+    切换到下一个fragment
+     */
     public void switchNext(){
         currentIndex++;
         mViewPager.setCurrentItem(currentIndex);

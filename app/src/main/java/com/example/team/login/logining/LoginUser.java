@@ -17,7 +17,7 @@ public class LoginUser {
      */
 
     private int code;
-    private String msg;
+    private String message;
     private Data data;
 
     public int getCode() {
@@ -28,12 +28,12 @@ public class LoginUser {
         this.code = code;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String msg) {
+        this.message = msg;
     }
 
     public Data getData() {
