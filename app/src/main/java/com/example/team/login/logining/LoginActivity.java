@@ -27,8 +27,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends StatusBar {
 
-    private static final String TOKEN = "token";
-    private static final String KEY = "team";
+    public static final String TOKEN = "token";
+    public static final String KEY = "team";
 
     private EditText et_id;
     private EditText et_password;
@@ -86,7 +86,7 @@ public class LoginActivity extends StatusBar {
      */
     public String restoreData(String key){
         SharedPreferences sp = getSharedPreferences(KEY,Context.MODE_PRIVATE);
-        String value = sp.getString(key,"");
+        String value = sp.getString(key,null);
         return value;
     }
 
@@ -111,11 +111,13 @@ public class LoginActivity extends StatusBar {
                     String token = response.body().getData();
                     //登陆成功后保存token数据
                     saveData(TOKEN,token);
+                    Log.d("LoginActivity","token:"+token);
                     if(check_remember.isChecked()){
                         saveData("id",student_id);
                         saveData("password",password);
                     }
                     HomePageActivity.actionStart(LoginActivity.this);
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "账号或密码错误", Toast.LENGTH_SHORT).show();
                 }

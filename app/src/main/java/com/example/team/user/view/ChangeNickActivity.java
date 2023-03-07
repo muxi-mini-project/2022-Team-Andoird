@@ -46,7 +46,6 @@ public class ChangeNickActivity extends StatusBar {
 
         btn_finish.setOnClickListener(view -> {
             String nickName = et_nickName.getText().toString();
-            changeNickRequest(nickName);
             Intent intent = getIntent();
             //携带昵称返回信息
             intent.putExtra(Extra_Nickname,nickName);
@@ -67,35 +66,5 @@ public class ChangeNickActivity extends StatusBar {
         btn_return = findViewById(R.id.btn_return);
         btn_finish = findViewById(R.id.btn_finish);
         btn_clear = findViewById(R.id.btn_clear);
-    }
-
-    private void changeNickRequest(String nickname) {
-        //api实例
-        Retrofit retrofit = Api.getInstance().getApi();
-        //对象，用body
-        LoginUser.Data mLoginUser = new LoginUser.Data(nickname);
-        //web实例
-        InitAPI mInit = retrofit.create(InitAPI.class);
-        //call实例
-        //Call<LoginUser> call = mInit.initNick(token, mLoginUser);
-        //异步网络请求
-//        call.enqueue(new retrofit2.Callback<LoginUser>() {
-//            @Override
-//            public void onResponse(Call<LoginUser> call, Response<LoginUser> response) {
-//                if (response.isSuccessful()) {
-//                    Toast.makeText(ChangeNickActivity.this, "信息初始化成功", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(ChangeNickActivity.this, "信息初始化失败", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<LoginUser> call, Throwable t) {
-//                Toast.makeText(ChangeNickActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
-//                //抛出异常
-//                t.printStackTrace();
-//                Log.e("tag", t.getMessage());
-//            }
-//        });
     }
 }

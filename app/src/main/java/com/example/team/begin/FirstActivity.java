@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -56,10 +57,12 @@ public class FirstActivity extends StatusBar{
     判断是否为初次登陆
      */
     private void isFirstLogin(){
-        SharedPreferences sp = getSharedPreferences("data", Context.MODE_PRIVATE);
-        String token = sp.getString("token",null);
+        SharedPreferences sp = getSharedPreferences(LoginActivity.KEY, Context.MODE_PRIVATE);
+        String token = sp.getString(LoginActivity.TOKEN,null);
+        Log.d("FirstActivity",token);
         if(token != null){
             HomePageActivity.actionStart(FirstActivity.this);
+            finish();
         }
     }
 

@@ -4,6 +4,9 @@ import android.content.SharedPreferences;
 
 import com.example.team.login.logining.LoginActivity;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -19,15 +22,22 @@ public class ServiceCreator {
         }else{
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
+                    .client(getClient())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             return retrofit;
         }
     }
 
-
     //通过传入接口获取该接口的动态代理对象
     public static <T> T create(Class<T> serviceClass){
         return getRetrofit().create(serviceClass);
+    }
+
+    public static OkHttpClient getClient(){
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.connectTimeout(15, TimeUnit.SECONDS);
+        httpClientBuilder.addInterceptor(new TokenHeaderInterceptor());
+        return httpClientBuilder.build();
     }
 }

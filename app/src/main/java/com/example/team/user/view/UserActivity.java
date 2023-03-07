@@ -1,6 +1,7 @@
 package com.example.team.user.view;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -19,14 +20,18 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.team.R;
 import com.example.team.StatusBar;
+import com.example.team.home_page.HomePageActivity;
 import com.example.team.login.logining.LoginActivity;
 import com.example.team.user.presenter.UserPresenter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -43,8 +48,6 @@ public class UserActivity extends StatusBar implements IUserView {
     private static final int CROP_PHOTO = 3;
     //修改昵称标识
     private static final int CHANGE_NICKNAME = 4;
-
-    private Uri imageUri;
 
     private Button btn_return,btn_about,btn_update,btn_logout;
     private TextView tv_nickName;
@@ -66,13 +69,10 @@ public class UserActivity extends StatusBar implements IUserView {
         setContentView(R.layout.personal_information);
 
         initWidget();
-
-        //接收HomePagerActivity的图片信息
-        //image = getIntent().getStringExtra(EXTRA_AVATAR);
-        //mNick = getIntent().getStringExtra(EXTRA_NICKNAME);
     }
 
     private void initWidget(){
+        Log.d("mytag","init");
         btn_return = findViewById(R.id.btn_return);
         btn_about = findViewById(R.id.btn_about);
         btn_update = findViewById(R.id.btn_update);
@@ -83,76 +83,67 @@ public class UserActivity extends StatusBar implements IUserView {
             finish();
         });
         btn_about.setOnClickListener(view -> {
-            //AboutActivity.actionStart(UserActivity.this);
+            AboutActivity.actionStart(UserActivity.this);
         });
         btn_update.setOnClickListener(view -> {
             showMsg("当前为最新版本！");
+            iv_avatar.setBackgroundResource(R.mipmap.tou_xiang);
         });
         btn_logout.setOnClickListener(view -> {
             LoginActivity.actionStart(this);
             this.finish();
+            //HomePageActivity.finish();
         });
-        //initNickname();
-        //SharedPreferences.Editor editor = getSharedPreferences("data").edit();
-        //String token = new LoginActivity().restoreData("token");
-        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg3MDk5NTYsImlhdCI6MTY3ODEwNTE1NiwiaWQiOjN9._ivCwbvCt1XHCURDywO2wPC_nYJOnX5ZeEY8Olw4ue0";
-        try{
-            userPresenter.initUserInfo(token);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        //初始化信息
+        userPresenter.initUserInfo();
     }
 
     /*
-    拍照
+    返回到Activity
      */
-    private void takePhoto(){
-        File avatarImage = new File(getExternalCacheDir(),"avatar_iamge.jpg");
-        if(avatarImage.exists()){
-            avatarImage.delete();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            //拍照后返回
+            case TAKE_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    //Log.d("mytag",imageUri.toString());
+                    //Log.d("mytag",imageUri.toString());
+                    userPresenter.cropPhoto(this,CROP_PHOTO);
+                }
+                break;
+            case CROP_PHOTO:
+                if(resultCode == RESULT_OK){
+                    //imageUri = data.getData();
+                    Uri imageUri = userPresenter.getImageUri();
+                    Bitmap bitmap = getBitmapFromUri(imageUri);
+                    Glide.with(this).clear(iv_avatar);
+                    iv_avatar.setImageBitmap(bitmap);
+                    userPresenter.uploadAvatar();
+                }
+                break;
+            //打开相册后返回
+            case SELECT_PHOTO:
+                if (resultCode == RESULT_OK && data != null) {
+                    Uri imageUri = data.getData();
+                    Bitmap bitmap = getBitmapFromUri(imageUri);
+                    Glide.with(this).clear(iv_avatar);
+                    iv_avatar.setImageBitmap(bitmap);
+                    userPresenter.uploadAvatar();
+                }
+                break;
+            //修改昵称后返回
+            case CHANGE_NICKNAME:
+                if(data!=null){
+                    String nickName = data.getStringExtra("nickname");
+                    tv_nickName.setText(nickName);
+                    userPresenter.uploadNickname();
+                }
+                break;
+            default:
+                break;
         }
-        try{
-            avatarImage.createNewFile();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-
-        //获取imageUri
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            imageUri = FileProvider.getUriForFile(this,
-                    "com.example.team.user.UserActivity.fileprovider",avatarImage);
-        }else{
-            imageUri = Uri.fromFile(avatarImage);
-        }
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-        startActivityForResult(intent,TAKE_PHOTO);
-    }
-
-    /*
-    从相册选择照片
-     */
-    private void selectPhoto(){
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("image/*");
-        startActivityForResult(intent,SELECT_PHOTO);
-    }
-
-    /*
-    裁剪图片
-     */
-    private void cropPhoto(){
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(imageUri,"image/*");
-        intent.putExtra("scale",true);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        }
-        startActivityForResult(intent,CROP_PHOTO);
     }
 
     /*
@@ -173,11 +164,11 @@ public class UserActivity extends StatusBar implements IUserView {
         tv_takePhoto.setOnClickListener(v -> {
             showMsg("拍照");
             bottomSheetDialog.cancel();
-            takePhoto();
+            userPresenter.takePhoto(TAKE_PHOTO);
         });
         //打开相册
         tv_openAlbum.setOnClickListener(v -> {
-            selectPhoto();
+            userPresenter.selectPhoto(SELECT_PHOTO);
             showMsg("打开相册");
             bottomSheetDialog.cancel();
         });
@@ -199,47 +190,6 @@ public class UserActivity extends StatusBar implements IUserView {
             e.printStackTrace();
         }
         return null;
-    }
-
-    /*
-    返回到Activity
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            //拍照后返回
-            case TAKE_PHOTO:
-                if (resultCode == RESULT_OK) {
-                    Log.d("mytag",imageUri.toString());
-                    //Log.d("mytag",imageUri.toString());
-                    cropPhoto();
-                }
-                break;
-            case CROP_PHOTO:
-                if(resultCode == RESULT_OK){
-                    //imageUri = data.getData();
-                    Bitmap bitmap = getBitmapFromUri(imageUri);
-                    iv_avatar.setImageBitmap(bitmap);
-                }
-                break;
-            //打开相册后返回
-            case SELECT_PHOTO:
-                if (resultCode == RESULT_OK && data != null) {
-                    Uri imageUri = data.getData();
-                    Bitmap bitmap = getBitmapFromUri(imageUri);
-                    iv_avatar.setImageBitmap(bitmap);
-                    //WebRequest2(new File(image));
-                }
-                break;
-            //修改昵称后返回
-            case CHANGE_NICKNAME:
-                String nickName = data.getStringExtra("nickname");
-                tv_nickName.setText(nickName);
-                break;
-            default:
-                break;
-        }
     }
 
     private void showMsg(String msg) {
@@ -282,7 +232,28 @@ public class UserActivity extends StatusBar implements IUserView {
     }
 
     @Override
-    public void initAvatar() {
+    public void initAvatar(String url){
+        try{
+            URL murl = new URL(url);
+            Glide.with(this).load(murl)
+                    .apply(new RequestOptions().placeholder(R.mipmap.tou_xiang)).into(iv_avatar);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public String getNickname() {
+        return tv_nickName.getText().toString();
+    }
+
+    @Override
+    public File getImagefile() {
+        return null;
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }
