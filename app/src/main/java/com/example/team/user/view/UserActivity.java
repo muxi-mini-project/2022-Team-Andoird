@@ -87,7 +87,6 @@ public class UserActivity extends StatusBar implements IUserView {
         });
         btn_update.setOnClickListener(view -> {
             showMsg("当前为最新版本！");
-            iv_avatar.setBackgroundResource(R.mipmap.tou_xiang);
         });
         btn_logout.setOnClickListener(view -> {
             LoginActivity.actionStart(this);

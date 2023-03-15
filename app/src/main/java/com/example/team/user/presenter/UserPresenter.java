@@ -65,8 +65,6 @@ public class UserPresenter {
     拍照
      */
     public void takePhoto(int requestId){
-        //Context context = MyApplication.context;
-        //AppCompatActivity a = userView.getClass();
         File avatarImage = new File(context.getExternalCacheDir(),"avatar.jpg");
         if(avatarImage.exists()){
             avatarImage.delete();
@@ -100,7 +98,7 @@ public class UserPresenter {
         intent.setDataAndType(imageUri,"image/*");
         intent.putExtra("scale",true);
         intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-
+        //允许读写文件
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

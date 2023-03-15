@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.team.login.login_ok.Login_over;
 import com.example.team.network.Api;
 import com.example.team.R;
 import com.example.team.StatusBar;
@@ -116,7 +117,9 @@ public class LoginActivity extends StatusBar {
                         saveData("id",student_id);
                         saveData("password",password);
                     }
-                    HomePageActivity.actionStart(LoginActivity.this);
+                    //HomePageActivity.actionStart(LoginActivity.this);
+                    Intent intent = new Intent(LoginActivity.this, Login_over.class);
+                    startActivity(intent);
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "账号或密码错误", Toast.LENGTH_SHORT).show();
