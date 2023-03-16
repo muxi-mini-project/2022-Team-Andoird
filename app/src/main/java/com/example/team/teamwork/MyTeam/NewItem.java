@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -13,8 +14,8 @@ import com.example.team.StatusBar;
 
 public class NewItem extends StatusBar {
 
-    private ImageButton mReturn_Button;
-    private ImageButton mFinish_Button;
+    private Button mReturn_Button;
+    private Button mFinish_Button;
     private EditText mItem_Name;
     private EditText mItem_Introduction;
     private static final String TAG = "NewItem";
@@ -27,15 +28,15 @@ public class NewItem extends StatusBar {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_item);
 
-        mReturn_Button = (ImageButton) findViewById(R.id.ni_ib1);
+        mReturn_Button = (Button) findViewById(R.id.back_new_item);
         mReturn_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewItem.this.finish();
+                finish();
             }
         });
 
-        mFinish_Button = (ImageButton) findViewById(R.id.ni_ib2);
+        mFinish_Button = (Button) findViewById(R.id.bt_finish_new_item);
         mFinish_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +45,7 @@ public class NewItem extends StatusBar {
             }
         });
 
-        mItem_Name = (EditText) findViewById(R.id.ni_et1);
+        mItem_Name = (EditText) findViewById(R.id.et_item_name_new_item);
         mItem_Name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -61,7 +62,7 @@ public class NewItem extends StatusBar {
 
             }
         });
-        mItem_Introduction = (EditText) findViewById(R.id.ni_et2);
+        mItem_Introduction = (EditText) findViewById(R.id.et_project_new_item);
         mItem_Introduction.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
