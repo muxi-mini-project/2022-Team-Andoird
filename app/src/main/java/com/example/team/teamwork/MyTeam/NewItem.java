@@ -29,6 +29,7 @@ public class NewItem extends StatusBar {
         setContentView(R.layout.new_item);
 
         mReturn_Button = (Button) findViewById(R.id.back_new_item);
+
         mReturn_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

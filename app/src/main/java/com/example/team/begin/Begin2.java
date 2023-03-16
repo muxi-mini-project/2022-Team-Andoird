@@ -18,24 +18,19 @@ import com.example.team.login.logining.LoginActivity;
 
 public class Begin2 extends Fragment {
     private ImageButton mImageButton;
-    private static Current mCurrent;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.begin2, container, false);
-        mImageButton = view.findViewById(R.id.begin2);
-        mImageButton.setBackgroundResource(R.mipmap.huang_jian_tou);
+        mImageButton = view.findViewById(R.id.btn_next);
         mImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrent.add_current();
+                FirstActivity activity = (FirstActivity)getActivity();
+                activity.switchNext();
             }
         });
         return view;
-    }
-
-    public static void setCurrent2(Current current) {
-        mCurrent = current;
     }
 }
