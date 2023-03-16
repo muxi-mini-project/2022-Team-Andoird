@@ -28,15 +28,16 @@ public class NewItem extends StatusBar {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_item);
 
-        mReturn_Button = findViewById(R.id.btn_return);
+        mReturn_Button = (Button) findViewById(R.id.back_new_item);
+
         mReturn_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewItem.this.finish();
+                finish();
             }
         });
 
-        mFinish_Button = findViewById(R.id.btn_return);
+        mFinish_Button = (Button) findViewById(R.id.bt_finish_new_item);
         mFinish_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +46,7 @@ public class NewItem extends StatusBar {
             }
         });
 
-        mItem_Name = (EditText) findViewById(R.id.edit_creator);
+        mItem_Name = (EditText) findViewById(R.id.et_item_name_new_item);
         mItem_Name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -62,7 +63,7 @@ public class NewItem extends StatusBar {
 
             }
         });
-        mItem_Introduction = (EditText) findViewById(R.id.edit_project_name);
+        mItem_Introduction = (EditText) findViewById(R.id.et_project_new_item);
         mItem_Introduction.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

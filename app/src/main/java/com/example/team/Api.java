@@ -8,7 +8,7 @@ public class Api {
 
     private Api() {
         api = new Retrofit.Builder()
-                .baseUrl("http://119.3.2.168:8463/")
+                .baseUrl("`http://47.96.23.198/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
