@@ -15,10 +15,10 @@ public class CreatPData {
      * "ad anim minim sint qui"
      * ]
      */
-    private String remark;
     private String project_name;
-    private String deadline;
+    private String remark;
     private String start_time;
+    private String deadline;
     private ArrayList<String> step;
 
     public String getRemark() {

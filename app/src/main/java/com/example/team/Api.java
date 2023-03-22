@@ -5,6 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Api {
     private Retrofit api;
+    private static Api INSTANCE = new Api();
 
     private Api() {
         api = new Retrofit.Builder()
@@ -13,12 +14,12 @@ public class Api {
                 .build();
     }
 
-    private static class NetUtilHolder {
-        private static Api INSTANCE = new Api();
-    }
+//    private static class NetUtilHolder {
+//        private static Api INSTANCE = new Api();
+//    }
 
     public static Api getInstance() {
-        return NetUtilHolder.INSTANCE;
+        return INSTANCE;
     }
 
     public Retrofit getApi() {

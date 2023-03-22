@@ -78,6 +78,8 @@ public class MyTeamActivity extends StatusBar {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MyTeamActivity.this,NewItem.class);
+                //需要传入 团队id
+
                 startActivity(intent);
             }
         });
