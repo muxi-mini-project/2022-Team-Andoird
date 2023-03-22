@@ -22,6 +22,33 @@
         <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/task_main.xml" value="0.29791666666666666" />
         <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/task_new.xml" value="0.29791666666666666" />
         <entry key="..\:/MUXI/2022-Team-Andoird/app/src/main/res/view/team/layout/task_recyclerview.xml" value="0.29791666666666666" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/drawable-anydpi/ic_back.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/drawable-anydpi/ic_image.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/drawable-xhdpi/project_card.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/drawable/bg_my_team.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/drawable/bt_join.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/drawable/create_finish.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/drawable/create_image.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/drawable/et_team_code.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/home_page/drawable/bg_create.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/home_page/drawable/create_back.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/home_page/layout/creat_team_popupwindow.xml" value="0.276268115942029" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/home_page/layout/home_page_1.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/home_page/layout/home_recycleview1.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/home_page/layout/my_team_item.xml" value="0.25181159420289856" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/login/layout/create_team1.xml" value="0.276268115942029" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/login/layout/create_team2.xml" value="0.2726449275362319" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/login/layout/jion_team.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/team/layout/activity_create.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/team/layout/activity_join_team.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/team/layout/activity_my_team.xml" value="0.2563405797101449" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/team/layout/mt_recyclerview1.xml" value="0.2563405797101449" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/team/layout/mt_recyclerview2.xml" value="0.25181159420289856" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/team/layout/my_team.xml" value="0.2563405797101449" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/team/layout/my_team_item1.xml" value="0.2563405797101449" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/team/layout/my_team_item2.xml" value="0.2563405797101449" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/team/layout/new_item.xml" value="0.2563405797101449" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/team-android/2022-Team-Andoird/app/src/main/res/view/team/layout/team_dialog.xml" value="0.2604166666666667" />
         <entry key="..\:/系统默认/桌面/Team/2022-Team-Andoird/app/src/main/res/view/home_page/layout/home_page_1.xml" value="0.25364583333333335" />
         <entry key="..\:/系统默认/桌面/Team/2022-Team-Andoird/app/src/main/res/view/login/layout/activity_login.xml" value="0.2115036231884058" />
         <entry key="..\:/系统默认/桌面/team (3)/Team/app/src/main/res/view/home_page/layout/task_page.xml" value="0.12310030395136778" />

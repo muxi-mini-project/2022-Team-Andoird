@@ -45,6 +45,7 @@ import com.example.team.login.login_ok.utils.BitmapUtils;
 import com.example.team.login.login_ok.utils.CameraUtils;
 import com.example.team.login.logining.LoginUser;
 import com.example.team.team.Bean.UserTeam;
+import com.example.team.team.view.CreateActivity;
 import com.example.team.team.view.CreateTeamActivity;
 import com.example.team.team.view.JoinTeamActivity;
 import com.example.team.user.UserActivity;
@@ -323,7 +324,7 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
         mCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePageActivity.this, CreateTeamActivity.class);
+                Intent intent = new Intent(HomePageActivity.this, CreateActivity.class);
                 //设置回调接口
                 startActivity(intent);
                 popWindow.dismiss();

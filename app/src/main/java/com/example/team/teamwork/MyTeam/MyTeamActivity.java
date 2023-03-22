@@ -21,6 +21,7 @@ import com.example.team.teamwork.Task.TaskActivity;
 public class MyTeamActivity extends StatusBar {
     private ImageButton mt_ib1;
     private ImageButton mt_ib2;
+    private String team_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +30,19 @@ public class MyTeamActivity extends StatusBar {
         //状态栏文字自适应
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_team);
+        setContentView(R.layout.activity_my_team);
+
+        Intent intent = this.getIntent();
+        team_id = intent.getStringExtra("team_id");
 
         FragmentManager mt_fm1 = getSupportFragmentManager();
         Fragment mt_fragment1 = mt_fm1.findFragmentById(R.id.mt_fragmentContainerView1);
         if (mt_fragment1 == null) {
             mt_fragment1 = new MyTeamFragmentHorizontal();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("team_id", team_id);
+            mt_fragment1.setArguments(bundle);
             mt_fm1.beginTransaction()
                     .add(R.id.mt_fragmentContainerView1, mt_fragment1)
                     .commit();
@@ -44,6 +52,9 @@ public class MyTeamActivity extends StatusBar {
         Fragment mt_fragment2 = mt_fm2.findFragmentById(R.id.mt_fragmentContainerView2);
         if (mt_fragment2 == null) {
             mt_fragment2 = new MyTeamFragmentVertical();
+            Bundle bundle = new Bundle();
+            bundle.putString("team_id", team_id);
+            mt_fragment2.setArguments(bundle);
             mt_fm2.beginTransaction()
                     .add(R.id.mt_fragmentContainerView2, mt_fragment2)
                     .commit();
@@ -53,15 +64,15 @@ public class MyTeamActivity extends StatusBar {
 
     /*初始化控件*/
     private void InitView() {
-        mt_ib1 = (ImageButton) findViewById(R.id.mt_ib1);
+        mt_ib1 = (ImageButton) findViewById(R.id.my_team_back);
         mt_ib1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyTeamActivity.this.finish();
+                finish();
             }
         });
 
-        mt_ib2 = (ImageButton) findViewById(R.id.mt_ib2);
+        mt_ib2 = (ImageButton) findViewById(R.id.new_project);
         mt_ib2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

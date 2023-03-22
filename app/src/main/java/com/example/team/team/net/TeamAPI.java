@@ -3,6 +3,7 @@ package com.example.team.team.net;
 import com.example.team.team.Bean.TeamData;
 import com.example.team.team.Bean.UserTeam;
 import com.example.team.team.Bean.UsersTeam;
+import com.example.team.teamwork.MyTeam.Horizontal.HorizontalData;
 
 import java.util.Map;
 
@@ -38,5 +39,8 @@ public interface TeamAPI {
 
     //查看团队
     @GET("team/{team_id}")
-    Call<UsersTeam> usersTeam(@Header("token") String token,@Path("team_id")int team_id);
+    Call<UsersTeam> usersTeam(@Header("token") String token,@Path("team_id")String team_id);
+
+    @GET("team/{team_id}")
+    Call<HorizontalData> usersTeam2(@Header("token") String token, @Path("team_id")String team_id);
 }
