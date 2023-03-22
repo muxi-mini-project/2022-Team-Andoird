@@ -161,7 +161,7 @@ public class UserTeamFragment extends DialogFragment {
         //web实例
         TeamAPI teamAPI = retrofit.create(TeamAPI.class);
         //call实例
-        Call<UsersTeam> call = teamAPI.usersTeam(token,team_id);
+        Call<UsersTeam> call = teamAPI.usersTeam(token,Integer.toString(team_id));
         //异步网络请求
         call.enqueue(new retrofit2.Callback<UsersTeam>() {
             @Override

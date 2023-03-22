@@ -3,17 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.team">
 
-    <!--网络权限-->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!--相机权限-->
-<!--    <uses-permission android:name="android.permission.CAMERA"/>-->
-
-    <!-- 读写文件权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <!-- Android11新增 -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
 
     <application
-        android:name=".MyApplication"
+        android:preserveLegacyExternalStorage="true"
         android:allowBackup="true"
         android:icon="@mipmap/title"
         android:label="@string/app_name"
@@ -22,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Team">
         <activity
-            android:name=".begin.FirstActivity"
+            android:name=".FirstActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,22 +39,21 @@
 
         <activity android:name=".login.login_ok.Login_over"></activity>
         <activity android:name=".home_page.HomePageActivity"></activity>
-        <activity android:name=".user.view.UserActivity"></activity>
-        <activity android:name=".user.view.ChangeNickActivity"></activity>
+        <activity android:name=".user.UserActivity"></activity>
+        <activity android:name=".user.Change_nick"></activity>
         <activity android:name=".login.logining.LoginActivity"></activity>
-        <activity android:name=".team.view.CreateTeamActivity"></activity>
-        <activity android:name=".team.view.ShareTeamActivity"></activity>
+        <activity android:name=".team.view.CreateActivity"></activity>
+<!--        <activity android:name=".team.view.ShareTeamActivity"></activity>-->
         <activity android:name=".teamwork.Task.TaskActivity"></activity>
         <activity android:name=".teamwork.MyTeam.MyTeamActivity"></activity>
         <activity android:name=".teamwork.MyTeam.NewItem"></activity>
-        <activity android:name=".team.view.JoinTeamActivity"></activity>
-        <activity android:name=".user.view.AboutActivity"/>
         <!-- Android7.0以后读取文件需要配置Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="UserActivity.fileprovider"
+            android:authorities="com.example.team.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
+
             <!-- 元数据 -->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
