@@ -26,4 +26,5 @@ public abstract class StatusBar extends AppCompatActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
         }
     }
+
 }

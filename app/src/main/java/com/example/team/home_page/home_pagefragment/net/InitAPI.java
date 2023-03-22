@@ -22,7 +22,7 @@ public interface InitAPI {
      * 注解
      */
     @POST("user/pupup")
-    Call<LoginUser> initNick(@Header("token")String token, @Body LoginUser.DataDTO loginUser);
+    Call<LoginUser> initNick(@Header("token")String token, @Body LoginUser.Data loginUser);
 
     //得到用户信息
     @GET("user/info")

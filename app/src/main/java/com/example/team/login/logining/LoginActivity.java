@@ -1,10 +1,10 @@
 package com.example.team.login.logining;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;不要这个，改为下面的
-import androidx.appcompat.app.AppCompatActivity;
 //import android.telecom.Call;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -15,125 +15,117 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.team.Api;
-import com.example.team.FirstActivity;
+import com.example.team.login.login_ok.Login_over;
+import com.example.team.network.Api;
 import com.example.team.R;
 import com.example.team.StatusBar;
 import com.example.team.home_page.HomePageActivity;
-import com.example.team.login.login_ok.Login_over;
+import com.example.team.network.ServiceCreator;
 
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class LoginActivity extends StatusBar {
 
-    private EditText mStudent_Id;
-    private EditText mPassword;
-    private ImageButton mLoginButton;
-    private CheckBox mRemember;
+    public static final String TOKEN = "token";
+    public static final String KEY = "team";
 
-    private String student_id;
-    private String password;
+    private EditText et_id;
+    private EditText et_password;
+    private Button btn_login;
+    private CheckBox check_remember;
 
-    public static String token;
-
+    public static void actionStart(Context context){
+        Intent intent = new Intent(context,LoginActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         //设置状态栏透明
         StatusBar_to_transparent(this);
         //状态栏文字自适应
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        initWidget();
 
-
-        /*获得SharedPreferences，并创建文件名为saved
-        SharedPreferences sp = getSharedPreferences("Token", 0);
-        //获得Editor对象，用于储存用户信息,保存密码
-        //SharedPreferences.Editor editor = sp.edit();
-        //判断是否为初次登录
-        token = sp.getString("Token", null);
-        if (token != null) {
-            Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);//
-            startActivity(intent);
-            finish();
-        }*/
-
-        //重新登录,如果之前记住过密码，直接先导入。
-        mStudent_Id = (EditText) findViewById(R.id.et5);
-        mPassword = (EditText) findViewById(R.id.et6);
-
-        //隐藏密码
-        mPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-
-        /**if (sp.getString("account", student_id) != null
-         && sp.getString("password", password) != null) {
-         mStudent_Id.setText(sp.getString("account", student_id));
-         mPassword.setText(sp.getString("password", password));
-         }*/
-        //
-        //mRemember=(CheckBox)findViewById(R.id.key_remember);
-        mLoginButton = (ImageButton) findViewById(R.id.enter);
-
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                student_id = mStudent_Id.getText().toString();
-                password = mPassword.getText().toString();
-                //保存密码
-                /**  if(mRemember.isChecked()){
-                 editor.putString("account",student_id);
-                 editor.putString("password",password);
-                 editor.commit();
-                 editor.apply();
-                 }
-                 else{
-                 //啥也不干
-                 }*/
-                WebRequest(student_id, password);
+                String student_id = et_id.getText().toString();
+                String password = et_password.getText().toString();
+                loginRequest(student_id, password);
             }
         });
     }
 
-    //网络请求
-    private void WebRequest(String student_id, String password) {
-        //api实例
-        Retrofit retrofit = Api.getInstance().getApi();
-        //对象，用body
-        LoginUser.DataDTO mLoginUser = new LoginUser.DataDTO(student_id, password);
-        //web实例
-        LoginAPI mLogin = retrofit.create(LoginAPI.class);
-        //call实例
-        Call<LoginResponse> call = mLogin.postLogin(mLoginUser);
+    private void initWidget(){
+        et_id = (EditText) findViewById(R.id.et_id);
+        et_password = (EditText) findViewById(R.id.et_password);
+        btn_login = (Button) findViewById(R.id.btn_login);
+        check_remember = findViewById(R.id.check_remember);
+
+        //如果之前记住过密码，直接先导入
+        et_id.setText(restoreData("id"));
+        et_password.setText(restoreData("password"));
+    }
+
+    /*
+    保存数据
+     */
+    private void saveData(String key,String value){
+        SharedPreferences sp = getSharedPreferences(KEY,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(key,value);
+        editor.apply();
+    }
+
+    /*
+    恢复数据
+     */
+    public String restoreData(String key){
+        SharedPreferences sp = getSharedPreferences(KEY,Context.MODE_PRIVATE);
+        String value = sp.getString(key,null);
+        return value;
+    }
+
+    /*
+    登陆网络请求
+     */
+    private void loginRequest(String student_id, String password) {
+        //登陆输入数据
+        LoginUser.Data loginUser = new LoginUser.Data(student_id, password);
+        //创建Api的动态代理对象
+        Api loginApi =  ServiceCreator.create(Api.class);
+        //创建登陆请求
+        Call<LoginResponse> call = loginApi.postLogin(loginUser);
         //异步网络请求
         call.enqueue(new retrofit2.Callback<LoginResponse>() {
-            //web成功
+            //请求成功
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                    //token数据
+                    String token = response.body().getData();
+                    //登陆成功后保存token数据
+                    saveData(TOKEN,token);
+                    Log.d("LoginActivity","token:"+token);
+                    if(check_remember.isChecked()){
+                        saveData("id",student_id);
+                        saveData("password",password);
+                    }
+                    //HomePageActivity.actionStart(LoginActivity.this);
+                    Intent intent = new Intent(LoginActivity.this, Login_over.class);
                     startActivity(intent);
-
-                    //Data
-                    token = response.body().getData();
-                    //保存初次是否为登录数据，
-                    SharedPreferences sharedPreferences = getSharedPreferences("Token", 0);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("Token",token);
-                    editor.commit();
-                    editor.apply();
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "账号或密码错误", Toast.LENGTH_SHORT).show();
                 }
-
             }
-
-            //web失败
+            //请求失败
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();

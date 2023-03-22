@@ -18,29 +18,24 @@ import com.example.team.StatusBar;
 import com.example.team.login.logining.LoginActivity;
 
 public class Begin3 extends Fragment {
-    private ImageButton mImageButton;
-    private Button mButton;
-    private Current mCurrent;
+    private ImageButton btn_next;
+    private Button btn_login;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.begin3,container,false);
-        mImageButton=(ImageButton) view.findViewById(R.id.begin3);
-        mImageButton.setBackgroundResource(R.mipmap.huang_jian_tou);
-
-        mButton=(Button)view. findViewById(R.id.begin4);
-        mButton.setOnClickListener(new View.OnClickListener() {
+        btn_next = (ImageButton) view.findViewById(R.id.btn_next);
+        btn_login = (Button)view.findViewById(R.id.btn_enter);
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 Intent intent=new Intent(getActivity(),LoginActivity.class);
-                 startActivity(intent);
+                getActivity().finish();
+                LoginActivity.actionStart(getActivity());
             }
         });
         return view;
-    }
-    public  void setCurrent(Current current){
-        mCurrent=current;
     }
 }
 

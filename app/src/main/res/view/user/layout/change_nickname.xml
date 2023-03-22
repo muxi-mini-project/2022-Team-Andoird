@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/change_nick"
+        android:id="@+id/changeNickName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
@@ -21,7 +21,7 @@
         android:background="#EEEEEE" />
 
     <TextView
-        android:id="@+id/qu_xiao"
+        android:id="@+id/cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
