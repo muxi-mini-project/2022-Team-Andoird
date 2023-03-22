@@ -59,7 +59,7 @@ public class FirstActivity extends StatusBar{
     private void isFirstLogin(){
         SharedPreferences sp = getSharedPreferences(LoginActivity.KEY, Context.MODE_PRIVATE);
         String token = sp.getString(LoginActivity.TOKEN,null);
-        Log.d("FirstActivity",token);
+//        Log.d("FirstActivity",token);
         if(token != null){
             HomePageActivity.actionStart(FirstActivity.this);
             finish();

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@drawable/my_team1"
+    android:background="@drawable/background1"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -40,7 +41,8 @@
         android:id="@+id/mt_fragmentContainerView1"
         android:name="com.example.team.teamwork.MyTeam.Horizontal.MyTeamFragmentHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp"
+        tools:layout="@layout/mt_recyclerview1" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -61,6 +63,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="66dp"
             android:src="@drawable/my_team2"/>
+
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView

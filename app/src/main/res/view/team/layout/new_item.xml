@@ -67,19 +67,19 @@
             android:padding="10dp"
             android:background="@drawable/button_new_project_white"/>
 
-        <EditText
-            android:id="@+id/et_person_name_new_item"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.07"
-            android:autoSizeTextType="uniform"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.14"
-            android:hint="创建人"
-            android:padding="10dp"
-            android:background="@drawable/button_new_project_white"
-            />
+<!--        <EditText-->
+<!--            android:id="@+id/et_person_name_new_item"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintHeight_percent="0.07"-->
+<!--            android:autoSizeTextType="uniform"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.14"-->
+<!--            android:hint="创建人"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@drawable/button_new_project_white"-->
+<!--            />-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -87,7 +87,8 @@
             app:layout_constraintHeight_percent="0.05"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.25" >
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintVertical_bias="0.14" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -112,7 +113,8 @@
             app:layout_constraintHeight_percent="0.05"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.32" >
+            app:layout_constraintVertical_bias="0.2"
+            android:layout_marginHorizontal="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -137,7 +139,7 @@
             android:layout_height="0dp"
             app:layout_constraintHeight_percent="0.3"            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.55"
+            app:layout_constraintVertical_bias="0.4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
             android:hint="介绍一下你的项目吧"
             android:gravity="top"
             android:background="@drawable/button_new_project_white"

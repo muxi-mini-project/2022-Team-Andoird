@@ -80,13 +80,6 @@ public class TaskActivity extends StatusBar implements View.OnClickListener {
         tm_three = (TextView) findViewById(R.id.tm_three);
         myViewPager = (ViewPager) findViewById(R.id.tm_viewpager);
 
-        task_add = (ImageButton) findViewById(R.id.task_add);
-        task_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                task_dialog();
-            }
-        });
         tm_return = (ImageButton) findViewById(R.id.tm_return);
         tm_return.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +87,15 @@ public class TaskActivity extends StatusBar implements View.OnClickListener {
                 TaskActivity.this.finish();
             }
         });
+
+        task_add = (ImageButton) findViewById(R.id.task_add);
+        task_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                task_dialog();
+            }
+        });
+
     }
 
     /*点击事件*/
@@ -154,6 +156,7 @@ public class TaskActivity extends StatusBar implements View.OnClickListener {
             }
         }
     }
+
     //网络请求Get---所有查看任务
     private void WebRequest(int team_id, String token) {
         //api实例

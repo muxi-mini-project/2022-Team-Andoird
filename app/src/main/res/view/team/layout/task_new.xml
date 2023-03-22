@@ -27,19 +27,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.3" />
 
-        <TextView
+        <Button
+            android:id="@+id/back_new_task"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:autoSizeTextType="uniform"
             android:gravity="center"
             android:text="取消"
             app:layout_constraintBottom_toBottomOf="@id/title"
-            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHeight_percent="0.45"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/title"
-            app:layout_constraintTop_toTopOf="@id/title"
-            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintWidth_percent="0.15"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -67,18 +67,18 @@
             android:padding="10dp"
             android:background="@drawable/button_new_project_white"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.07"
-            android:autoSizeTextType="uniform"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.14"
-            android:hint="创建人"
-            android:padding="10dp"
-            android:background="@drawable/button_new_project_white"
-            />
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintHeight_percent="0.07"-->
+<!--            android:autoSizeTextType="uniform"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.14"-->
+<!--            android:hint="创建人"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@drawable/button_new_project_white"-->
+<!--            />-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -86,7 +86,7 @@
             app:layout_constraintHeight_percent="0.05"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.25" >
+            app:layout_constraintVertical_bias="0.15" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -99,9 +99,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:layout_constraintRight_toRightOf="parent"
+                android:gravity="center"
                 android:text="传入时间"
-                android:gravity="center"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,7 +112,7 @@
             app:layout_constraintHeight_percent="0.05"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.32" >
+            app:layout_constraintVertical_bias="0.22" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -130,37 +131,37 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintHeight_percent="0.05"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.4" >-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                android:text="选择项目"-->
+<!--                android:gravity="center"-->
+<!--                android:textColor="@color/black"/>-->
+
+<!--            <EditText-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintRight_toRightOf="parent"-->
+<!--                android:background="@drawable/button_new_project_white"-->
+<!--                app:layout_constraintWidth_percent="0.6"/>-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintHeight_percent="0.05"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.4" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:text="选择项目"
-                android:gravity="center"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:background="@drawable/button_new_project_white"
-                app:layout_constraintWidth_percent="0.6"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.05"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.47" >
+            app:layout_constraintVertical_bias="0.3" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -180,17 +181,19 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
+            android:id="@+id/et_Remark_task"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintHeight_percent="0.3"            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.75"
+            app:layout_constraintVertical_bias="0.55"
             android:hint="任务备注"
             android:gravity="top"
             android:background="@drawable/button_new_project_white"
             android:padding="10dp"/>
 
         <Button
+            android:id="@+id/bt_finish_task"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintTop_toTopOf="parent"
