@@ -1,11 +1,14 @@
 package com.example.team.home_page.home_pagefragment.view;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +27,7 @@ import com.example.team.team.Bean.UserTeam;
 import com.example.team.teamwork.Bean.LookTaskData;
 import com.example.team.teamwork.net.TaskAPI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -45,12 +49,11 @@ public class CompleteFragment extends Fragment implements Callback4 {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview1);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         InCompleteFragment.setCallback(CompleteFragment.this);
-
         initWidgets();
-
         WebRequest1(token);
-
         return view;
+
+
     }
 
     @Override
@@ -73,17 +76,17 @@ public class CompleteFragment extends Fragment implements Callback4 {
     private class TaskHolder extends RecyclerView.ViewHolder {
         private LookTaskData.TData mData;
         private TextView mTaskName;
-        private TextView mTeam;
-        private TextView mProject;
+        private EditText mTeam;
+        private EditText mProject;
         private TextView mDate;
         private ImageButton mComplete;
         private int task_id;
 
-        public TaskHolder(LayoutInflater inflater, ViewGroup container) {
-            super(inflater.inflate(R.layout.task2_page, container, false));
+        public TaskHolder(final View view) {
+            super(view);
             mTaskName = (TextView) itemView.findViewById(R.id.task_page1);
-            mTeam = (TextView) itemView.findViewById(R.id.task_page2);
-            mProject = (TextView) itemView.findViewById(R.id.task_page3);
+            mTeam = (EditText) itemView.findViewById(R.id.task_page2);
+            mProject = (EditText) itemView.findViewById(R.id.task_page3);
             mDate = (TextView) itemView.findViewById(R.id.task_page4);
             mComplete = (ImageButton) itemView.findViewById(R.id.task_page5);
             mComplete.setBackgroundResource(R.mipmap.task2_page);
@@ -102,28 +105,51 @@ public class CompleteFragment extends Fragment implements Callback4 {
             mTeam.setText(mData.getCreatetime());
             mProject.setText(mData.getProject());
             mDate.setText(mData.getDeadline());
-
         }
     }
 
     private class TaskAdapter extends RecyclerView.Adapter {
+        public final int TYPE_EMPTY = 0;
+        public final int TYPE_NORMAL = 1;
+
+        @Override
+        public int getItemViewType(int position) {
+            if (task.size() <= 0) {
+                return TYPE_EMPTY;
+            }
+            return TYPE_NORMAL;
+        }
+
+
         @NonNull
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            return new TaskHolder(layoutInflater, parent);
+            View view;
+            if (viewType == TYPE_EMPTY) {
+                view = LayoutInflater.from(getActivity()).inflate(R.layout.home_page_task_null, parent, false);
+                return new RecyclerView.ViewHolder(view) {
+                };
+            } else {
+                view = LayoutInflater.from(getActivity()).inflate(R.layout.task2_page, parent, false);
+            }
+            //否则返回自定义
+
+            return new TaskHolder(view);
         }
 
         @Override
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             if (holder instanceof TaskHolder) {
-                LookTaskData.TData tData=task.get(position);
+                LookTaskData.TData tData = task.get(position);
                 ((TaskHolder) holder).bind(tData);
             }
         }
 
         @Override
         public int getItemCount() {
+            if (task.size() <= 0) {
+                return 1;
+            }
             return task.size();
         }
     }
@@ -150,6 +176,8 @@ public class CompleteFragment extends Fragment implements Callback4 {
                     //拉一个List下来
                     task = response.body().getTask();
                     UpdateUI();
+
+
                 } else {
                     showCode(response.body().getCode());
                     Toast.makeText(getActivity(), "搞错了,再来", Toast.LENGTH_SHORT).show();
@@ -204,6 +232,9 @@ public class CompleteFragment extends Fragment implements Callback4 {
         });
     }
 
+    //检查是否有任务
+
+
     private void showMsg(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
@@ -211,10 +242,12 @@ public class CompleteFragment extends Fragment implements Callback4 {
     private void showCode(int code) {
         Toast.makeText(getActivity(), code, Toast.LENGTH_SHORT).show();
     }
+
     @Override
     public void UPdate() {
         WebRequest1(token);
     }
+
     public static void setCallback(Callback4 callback4) {
         mCallback4 = callback4;
     }

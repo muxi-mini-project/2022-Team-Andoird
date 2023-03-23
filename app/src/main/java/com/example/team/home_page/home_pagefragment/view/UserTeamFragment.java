@@ -121,7 +121,11 @@ public class UserTeamFragment extends DialogFragment {
         }
 
         private void bind(UsersTeam.Users users) {
-            Glide.with(getActivity()).load(users.getAvatar()).apply(requestOptions).into(mShapeableImageView);
+            Glide.with(getActivity()).load(users.getAvatar())
+                    .placeholder(R.drawable.title)//图片加载出来前，显示的图片
+                    .error(R.drawable.title)//图片加载失败后，显示的图片
+                    .apply(requestOptions)
+                    .into(mShapeableImageView);
             mTeamUserName.setText(users.getNickname());
         }
 

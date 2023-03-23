@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,16 +76,16 @@ public class WholeFragment extends Fragment implements Callback4 {
     private class TaskHolder extends RecyclerView.ViewHolder {
         private LookTaskData.TData mData;
         private TextView mTaskName;
-        private TextView mTeam;
-        private TextView mProject;
+        private EditText mTeam;
+        private EditText mProject;
         private TextView mDate;
         private int task_id;
 
-        public TaskHolder(LayoutInflater inflater, ViewGroup container) {
-            super(inflater.inflate(R.layout.task3_page, container, false));
+        public TaskHolder(final View view) {
+            super(view);
             mTaskName = (TextView) itemView.findViewById(R.id.task_page1);
-            mTeam = (TextView) itemView.findViewById(R.id.task_page2);
-            mProject = (TextView) itemView.findViewById(R.id.task_page3);
+            mTeam = (EditText) itemView.findViewById(R.id.task_page2);
+            mProject = (EditText) itemView.findViewById(R.id.task_page3);
             mDate = (TextView) itemView.findViewById(R.id.task_page4);
         }
 
@@ -100,11 +101,31 @@ public class WholeFragment extends Fragment implements Callback4 {
     }
 
     private class TaskAdapter extends RecyclerView.Adapter {
+        public final int TYPE_EMPTY = 0;
+        public final int TYPE_NORMAL = 1;
+
+        @Override
+        public int getItemViewType(int position) {
+            if (task1.size() <= 0) {
+                return TYPE_EMPTY;
+            }
+            return TYPE_NORMAL;
+        }
+
         @NonNull
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            return new TaskHolder(layoutInflater, parent);
+            View view;
+            if (viewType == TYPE_EMPTY) {
+                view = LayoutInflater.from(getActivity()).inflate(R.layout.home_page_task_null, parent, false);
+                return new RecyclerView.ViewHolder(view) {
+                };
+            } else {
+                view = LayoutInflater.from(getActivity()).inflate(R.layout.task3_page, parent, false);
+            }
+            //否则返回自定义
+
+            return new TaskHolder(view);
         }
 
         @Override
@@ -117,6 +138,9 @@ public class WholeFragment extends Fragment implements Callback4 {
 
         @Override
         public int getItemCount() {
+            if (task1.size() <= 0) {
+                return 1;
+            }
             return task1.size();
         }
     }
