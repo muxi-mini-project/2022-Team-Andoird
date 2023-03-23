@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,8 +27,8 @@ public class JoinTeamActivity extends StatusBar {
     private EditText mTeamCode;
     private String team_coding="1";
     private String token;
-    private ImageButton mImageButton;
-    private TextView mTextView;
+    private ImageButton mBackButton;
+    private Button mButton;
     private static Callback2 mCallback2;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,24 +36,25 @@ public class JoinTeamActivity extends StatusBar {
         //状态栏文字自适应
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.jion_team);
+        setContentView(R.layout.activity_join_team);
 
-        mImageButton=(ImageButton) findViewById(R.id.join1);
-        mImageButton.setBackgroundResource(R.mipmap.fan_hui);
+        mBackButton = (ImageButton) findViewById(R.id.join_back);
+
         //返回
-        mImageButton.setOnClickListener(new View.OnClickListener() {
+        mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
         //加入团队
-        mTeamCode=(EditText) findViewById(R.id.join2);
+        mTeamCode = (EditText) findViewById(R.id.join_code);
         //大坑！！！！！！！！！！！！！！1
         //team_coding=mTeamCode.getText().toString();
 
-        mTextView=(TextView)findViewById(R.id.join_ok);
-        mTextView.setOnClickListener(new View.OnClickListener() {
+        mButton=findViewById(R.id.join_finish);
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 team_coding=mTeamCode.getText().toString();

@@ -124,8 +124,10 @@ public class TeamFragment extends Fragment implements Callback2 {
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), MyTeamActivity.class);
-            intent.putExtra("team_id", team1.getTeam_id());
+
+            Intent intent= new Intent(getActivity(), MyTeamActivity.class);
+            intent.putExtra("team_id",Integer.toString(team.getTeam_id()));
+
             startActivity(intent);
         }
 

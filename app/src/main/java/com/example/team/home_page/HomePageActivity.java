@@ -48,9 +48,10 @@ import com.example.team.login.login_ok.utils.BitmapUtils;
 import com.example.team.login.login_ok.utils.CameraUtils;
 import com.example.team.login.logining.LoginUser;
 import com.example.team.team.Bean.UserTeam;
+import com.example.team.team.view.CreateActivity;
 import com.example.team.team.view.CreateTeamActivity;
 import com.example.team.team.view.JoinTeamActivity;
-import com.example.team.user.UserActivity;
+import com.example.team.user.view.UserActivity;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.Serializable;
@@ -100,6 +101,11 @@ public class HomePageActivity extends StatusBar implements Callback, Callback3 {
             .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
             .skipMemoryCache(true);//不做内存缓存
 
+    public static void actionStart(Context context){
+        Intent intent = new Intent(context,HomePageActivity.class);
+        context.startActivity(intent);
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -112,15 +118,15 @@ public class HomePageActivity extends StatusBar implements Callback, Callback3 {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page_1);
 
-
         //HeadPart
         mShapeableImageView = (ShapeableImageView) findViewById(R.id.home_page1);
         mShapeableImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = UserActivity.newIntent(HomePageActivity.this, image, mNick);
+                Intent intent = new Intent(HomePageActivity.this,UserActivity.class);
+                //Intent intent = UserActivity.newIntent(HomePageActivity.this, image, mNick);
                 //变成静态的
-                UserActivity.setCallback(HomePageActivity.this);
+                //UserActivity.setCallback(HomePageActivity.this);
                 startActivity(intent);
             }
         });
@@ -322,7 +328,7 @@ public class HomePageActivity extends StatusBar implements Callback, Callback3 {
         mCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePageActivity.this, CreateTeamActivity.class);
+                Intent intent = new Intent(HomePageActivity.this, CreateActivity.class);
                 //设置回调接口
                 startActivity(intent);
                 popWindow.dismiss();
