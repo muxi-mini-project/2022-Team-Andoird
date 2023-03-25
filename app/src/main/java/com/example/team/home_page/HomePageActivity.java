@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +48,7 @@ import com.example.team.login.login_ok.utils.BitmapUtils;
 import com.example.team.login.login_ok.utils.CameraUtils;
 import com.example.team.login.logining.LoginUser;
 import com.example.team.team.Bean.UserTeam;
+import com.example.team.team.view.CreateActivity;
 import com.example.team.team.view.CreateTeamActivity;
 import com.example.team.team.view.JoinTeamActivity;
 import com.example.team.user.view.UserActivity;
@@ -58,7 +62,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class HomePageActivity extends StatusBar implements View.OnClickListener, Callback, Callback3 {
+public class HomePageActivity extends StatusBar implements Callback, Callback3 {
     private static final String EXTRA_UserTeam = "com.example.team.home_page.first_activity.team";
     //保存着Data;
     private String token;
@@ -79,10 +83,10 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
     private TextView mCreate;
     private TextView mAdd2;
 
-
-    private ImageButton mwancheng;
-    private ImageButton mweiwancheng;
-    private ImageButton mquanbu;
+    private RadioGroup mRadioGroup;
+    private RadioButton mwancheng;
+    private RadioButton mweiwancheng;
+    private RadioButton mquanbu;
     private List<Fragment> mList;
     private InitFragment mInitFragment;
     private UserTeamFragment mUserTeamFragment;
@@ -152,19 +156,41 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
         }
 
         //ViewPager
-        mweiwancheng = (ImageButton) findViewById(R.id.home_page4);
-        mweiwancheng.setBackgroundResource(R.mipmap.weiwancheng1);
-        mweiwancheng.setOnClickListener(this);
+        mweiwancheng = (RadioButton) findViewById(R.id.home_page4);
+        Drawable drawable1 = getResources().getDrawable(R.drawable.weiwancheng);//找到你的图片
+        drawable1.setBounds(0, 0, 264,108 );//给图片设置大小,4个参数分别是左上右下
+        mweiwancheng.setCompoundDrawables(null, drawable1, null, null);
 
-        mwancheng = (ImageButton) findViewById(R.id.home_page5);
-        mwancheng.setBackgroundResource(R.mipmap.wancheng2);
-        mwancheng.setOnClickListener(this);
+        mwancheng = (RadioButton) findViewById(R.id.home_page5);
+        Drawable drawable2 = getResources().getDrawable(R.drawable.wancheng);//找到你的图片
+        drawable2.setBounds(0, 0, 264,108);//给图片设置大小,4个参数分别是左上右下
+        mwancheng.setCompoundDrawables(null, drawable2, null, null);
 
-        mquanbu = (ImageButton) findViewById(R.id.home_page6);
-        mquanbu.setBackgroundResource(R.mipmap.quabu2);
-        mquanbu.setOnClickListener(this);
+        mquanbu = (RadioButton) findViewById(R.id.home_page6);
+        Drawable drawable3 = getResources().getDrawable(R.drawable.quanbu);//找到你的图片
+        drawable3.setBounds(0, 0, 264,108);//给图片设置大小,4个参数分别是左上右下
+        mquanbu.setCompoundDrawables(null, drawable3, null, null);
 
         mViewPager = (ViewPager) findViewById(R.id.home_page7);
+        mRadioGroup=(RadioGroup) findViewById(R.id.rg_tab);
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.home_page4:
+                        mViewPager.setCurrentItem(0);
+                        break;
+                    case R.id.home_page5:
+                        mViewPager.setCurrentItem(1);
+                        break;
+                    case R.id.home_page6:
+                        mViewPager.setCurrentItem(2);
+                        break;
+
+                }
+            }
+        });
+
         mList = new ArrayList<>();
         mList.add(new InCompleteFragment());
         mList.add(new CompleteFragment());
@@ -207,20 +233,19 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        mweiwancheng.setBackgroundResource(R.mipmap.weiwancheng1);
-                        mwancheng.setBackgroundResource(R.mipmap.wancheng2);
-                        mquanbu.setBackgroundResource(R.mipmap.quabu2);
+                        mweiwancheng.setChecked(true);
+                        mwancheng.setChecked(false);
+                        mquanbu.setChecked(false);
                         break;
                     case 1:
-                        mweiwancheng.setBackgroundResource(R.mipmap.weiwancheng2);
-                        mwancheng.setBackgroundResource(R.mipmap.wancheng1);
-                        mquanbu.setBackgroundResource(R.mipmap.quabu2);
-
+                        mweiwancheng.setChecked(false);
+                        mwancheng.setChecked(true);
+                        mquanbu.setChecked(false);
                         break;
                     case 2:
-                        mweiwancheng.setBackgroundResource(R.mipmap.weiwancheng2);
-                        mwancheng.setBackgroundResource(R.mipmap.wancheng2);
-                        mquanbu.setBackgroundResource(R.mipmap.quanbu1);
+                        mweiwancheng.setChecked(false);
+                        mwancheng.setChecked(false);
+                        mquanbu.setChecked(true);
                         break;
                 }
             }
@@ -236,32 +261,7 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
 
     }
     //要有implements View.OnClickListener
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.home_page4:
-                //点击"健康"时切换到第一页
-                mViewPager.setCurrentItem(0);
-                mweiwancheng.setBackgroundResource(R.mipmap.weiwancheng1);
-                mwancheng.setBackgroundResource(R.mipmap.wancheng2);
-                mquanbu.setBackgroundResource(R.mipmap.quabu2);
-                break;
-            case R.id.home_page5:
-                //点击“运动”时切换到第二页
-                mViewPager.setCurrentItem(1);
-                mweiwancheng.setBackgroundResource(R.mipmap.weiwancheng2);
-                mwancheng.setBackgroundResource(R.mipmap.wancheng1);
-                mquanbu.setBackgroundResource(R.mipmap.quabu2);
-                break;
-            case R.id.home_page6:
-                //点击“学习”时切换到第三页
-                mViewPager.setCurrentItem(2);
-                mweiwancheng.setBackgroundResource(R.mipmap.weiwancheng2);
-                mwancheng.setBackgroundResource(R.mipmap.wancheng2);
-                mquanbu.setBackgroundResource(R.mipmap.quanbu1);
-                break;
-        }
-    }
+
 
     private void init_dialog() {
         FragmentManager fm = getSupportFragmentManager();
@@ -298,8 +298,8 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
         final PopupWindow popWindow = new PopupWindow(view,
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
-         mCreate = (TextView) view.findViewById(R.id.popupwindow2);
-         mAdd2 = (TextView) view.findViewById(R.id.popupwindow4);
+        mCreate = (TextView) view.findViewById(R.id.popupwindow2);
+        mAdd2 = (TextView) view.findViewById(R.id.popupwindow4);
 
 
         popWindow.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
@@ -328,7 +328,7 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
         mCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePageActivity.this, CreateTeamActivity.class);
+                Intent intent = new Intent(HomePageActivity.this, CreateActivity.class);
                 //设置回调接口
                 startActivity(intent);
                 popWindow.dismiss();
@@ -344,10 +344,11 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
         });
     }
 
-    private void initWidgets(){
-        SharedPreferences sharedPreferences = getSharedPreferences("Token",0);
-        token = sharedPreferences.getString("Token",null);
+    private void initWidgets() {
+        SharedPreferences sharedPreferences = getSharedPreferences("Token", 0);
+        token = sharedPreferences.getString("Token", null);
     }
+
     //网络请求
     private void WebRequest() {
         //api实例
@@ -363,22 +364,26 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
                 if (response.isSuccessful()) {
                     //数据一定以这种形式
                     name = response.body().getData().getNickname();
-                    avatar=response.body().getData().getAvatar();
+                    avatar = response.body().getData().getAvatar();
                     //空指针问题
                     if (" ".equals(name)) {
                         init_dialog();
-                    }
-                    else {
+                    } else {
                         mNick = name;
                         mNickname.setText(mNick);
                         //网络url显示图片
-                        Glide.with(HomePageActivity.this).load(avatar).apply(requestOptions)
+                        Glide.with(HomePageActivity.this).load(avatar)
+                                .placeholder(R.drawable.title)//图片加载出来前，显示的图片
+                                .error(R.drawable.title)//图片加载失败后，显示的图片
+                                .apply(requestOptions)
                                 .into(mShapeableImageView);
+                        //init_dialog();
 
                     }
                 }
 
             }
+
             @Override
             public void onFailure(Call<LoginUser> call, Throwable t) {
                 Toast.makeText(HomePageActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
@@ -389,7 +394,6 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
 
         });
     }
-
 
 
     //回调方法
@@ -410,17 +414,19 @@ public class HomePageActivity extends StatusBar implements View.OnClickListener,
         image = string;
         displayImage2(string);
     }
+
     @Override
     public void Users_Team(int team_id) {
         FragmentManager fm = getSupportFragmentManager();
-        mUserTeamFragment= UserTeamFragment.newInstance();
-        Bundle bundle=new Bundle();
-        bundle.putInt("team_id",team_id);
+        mUserTeamFragment = UserTeamFragment.newInstance();
+        Bundle bundle = new Bundle();
+        bundle.putInt("team_id", team_id);
         mUserTeamFragment.setArguments(bundle);
         //不需要目标fragment,因为可以判断activity是哪个
         mUserTeamFragment.show(fm, "UserTeamFragment");
 
     }
+
     public static Intent newIntent(Context context, List<UserTeam.Team> teams) {
         Intent intent = new Intent(context, HomePageActivity.class);
         intent.putExtra(EXTRA_UserTeam, (Serializable) teams);

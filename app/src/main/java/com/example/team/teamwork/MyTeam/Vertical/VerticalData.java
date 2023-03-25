@@ -1,74 +1,54 @@
 package com.example.team.teamwork.MyTeam.Vertical;
 
-import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
 public class VerticalData {
-    private UUID mId;
-    private String mTeam;
-    private String mProjectIntroduction;
-    private String mProject;
-    private Date mDate;
-    private int NumOfTask;
 
-    public int getNumOfTask() {
-        return NumOfTask;
+    private Integer code;
+    private List<DataDTO> data;
+    private String message;
+
+    public List<DataDTO> getData() {
+        return data;
     }
 
-    public void setNumOfTask(int numOfTask) {
-        NumOfTask = numOfTask;
+    public void setData(List<DataDTO> data) {
+        this.data = data;
     }
 
-    private boolean mSolved;
+    public static class DataDTO {
+        private Integer projectId;
+        private String projectName;
+        private Integer creatorId;
+        private String createTime;
+        private String startTime;
+        private String deadline;
+        private String remark;
+        private Integer teamId;
+        private Object step;
 
-        //唯一值id//
-    public VerticalData(){ mId=UUID.randomUUID(); }
-
-    public UUID getId() {
-            return mId;
+        public Integer getProjectId() {
+            return projectId;
         }
 
-    public void setId(UUID id) {
-        mId = id;
-    }
+        public void setProjectId(Integer projectId) {
+            this.projectId = projectId;
+        }
 
-    public String getTeam() {
-        return mTeam;
-    }
+        public String getProjectName() {
+            return projectName;
+        }
 
-    public void setTeam(String team) {
-        mTeam = team;
-    }
+        public void setProjectName(String projectName) {
+            this.projectName = projectName;
+        }
 
-    public String getProjectIntroduction() {
-        return mProjectIntroduction;
-    }
+        public String getDeadline() {
+            return deadline;
+        }
 
-    public void setProjectIntroduction(String projectIntroduction) {
-        mProjectIntroduction = projectIntroduction;
-    }
-
-    public String getProject() {
-        return mProject;
-    }
-
-    public void setProject(String project) {
-        mProject = project;
-    }
-
-    public Date getDate() {
-        return mDate;
-    }
-
-    public void setDate(Date date) {
-        mDate = date;
-    }
-
-    public boolean isSolved() {
-        return mSolved;
-    }
-
-    public void setSolved(boolean solved) {
-        mSolved = solved;
+        public void setDeadline(String deadline) {
+            this.deadline = deadline;
+        }
     }
 }

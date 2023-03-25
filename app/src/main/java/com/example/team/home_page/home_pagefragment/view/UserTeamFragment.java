@@ -121,7 +121,11 @@ public class UserTeamFragment extends DialogFragment {
         }
 
         private void bind(UsersTeam.Users users) {
-            Glide.with(getActivity()).load(users.getAvatar()).apply(requestOptions).into(mShapeableImageView);
+            Glide.with(getActivity()).load(users.getAvatar())
+                    .placeholder(R.drawable.title)//图片加载出来前，显示的图片
+                    .error(R.drawable.title)//图片加载失败后，显示的图片
+                    .apply(requestOptions)
+                    .into(mShapeableImageView);
             mTeamUserName.setText(users.getNickname());
         }
 
@@ -161,7 +165,7 @@ public class UserTeamFragment extends DialogFragment {
         //web实例
         TeamAPI teamAPI = retrofit.create(TeamAPI.class);
         //call实例
-        Call<UsersTeam> call = teamAPI.usersTeam(token,team_id);
+        Call<UsersTeam> call = teamAPI.usersTeam(token,Integer.toString(team_id));
         //异步网络请求
         call.enqueue(new retrofit2.Callback<UsersTeam>() {
             @Override

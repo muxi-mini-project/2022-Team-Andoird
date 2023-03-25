@@ -18,31 +18,43 @@
         android:layout_marginTop="0dp"
         android:text="任务名称"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/task_page2"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        android:text="团队"
+        android:text="团队123"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:singleLine="true"
+        android:textColorHint="#999d9e"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="15sp"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/task_page1" />
 
-    <TextView
+    <EditText
         android:id="@+id/task_page3"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="项目"
+        android:text="项目123"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:singleLine="true"
+        android:textColorHint="#999d9e"
         android:textColor="@color/white"
-        android:textSize="17sp"
+        android:textSize="12sp"
+        android:visibility="visible"
         app:layout_constraintStart_toEndOf="@id/task_page2"
         app:layout_constraintBottom_toBottomOf="@id/task_page2" />
 
@@ -54,7 +66,7 @@
         android:layout_marginTop="20dp"
         android:text="截止到"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/task_page2" />
 
@@ -66,7 +78,7 @@
         android:layout_marginTop="20dp"
         android:text="截止到"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@id/task_page6"
         app:layout_constraintTop_toBottomOf="@id/task_page2"/>
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="500dp"
+    android:gravity="center_horizontal" >
+
+<ImageButton
+        android:layout_width="196dp"
+        android:layout_height="150.51dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/task_null"
+         />
+
+</LinearLayout>

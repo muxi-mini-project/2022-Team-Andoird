@@ -199,6 +199,7 @@ public class UserActivity extends StatusBar implements IUserView {
                 } else {
                     Toast.makeText(this, "你没有获得摄像头权限~", Toast.LENGTH_SHORT).show();
                 }
+                int a;
             case 2:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     showMsg("获取访问相册权限~");
