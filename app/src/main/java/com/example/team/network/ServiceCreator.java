@@ -11,7 +11,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceCreator {
-    private static final String BASE_URL = "http://47.96.23.198:8463";
+    private static final String BASE_URL = "http://47.96.23.198:8463/";
     //Retrofit对象，只存在一个实例
     private static Retrofit retrofit;
 

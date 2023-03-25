@@ -2,6 +2,7 @@ package com.example.team;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,5 +30,11 @@ public class MyApplication extends Application {
                 a.finish();
             }
         }
+    }
+
+    public static String restoreData(String key){
+        SharedPreferences sp = context.getSharedPreferences("team",Context.MODE_PRIVATE);
+        String token = sp.getString("token",null);
+        return token;
     }
 }

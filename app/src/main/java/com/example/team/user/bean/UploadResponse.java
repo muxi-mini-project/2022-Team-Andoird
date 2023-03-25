@@ -8,9 +8,13 @@ package com.example.team.user.bean;
  *     "url": "https://gitee.com/Alen-H/imagebed/raw/master/320212140502023-03-07 20:44:00.PNG"
  */
 public class UploadResponse {
-    int code;
+    String code;
     String message;
     String path;
     String sha;
     String url;
+
+    public String getUrl(){
+        return url;
+    }
 }

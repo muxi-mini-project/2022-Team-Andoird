@@ -293,7 +293,6 @@ public class InitFragment extends DialogFragment {
             //显示图片
             Glide.with(this).load(imagePath).apply(requestOptions).into(ivHead);
 
-
             //压缩图片
             orc_bitmap = CameraUtils.compression(BitmapFactory.decodeFile(imagePath));
             //转Base64
