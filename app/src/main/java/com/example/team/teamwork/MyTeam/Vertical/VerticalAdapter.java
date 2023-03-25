@@ -2,21 +2,30 @@ package com.example.team.teamwork.MyTeam.Vertical;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.tu.circlelibrary.CirclePercentBar;
+import com.example.team.Api;
 import com.example.team.R;
 import com.example.team.teamwork.MyTeam.Horizontal.HorizontalAdapter;
 import com.example.team.teamwork.MyTeam.Horizontal.HorizontalData;
 import com.example.team.teamwork.MyTeam.MyTeamActivity;
 import com.example.team.teamwork.Task.TaskActivity;
+import com.example.team.teamwork.net.ProjectAPI;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 //① 创建Adapter
 public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.VH> {
@@ -47,6 +56,26 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.VH> {
         holder.projectName.setText(data.get(position).getProjectName());
         holder.projectDeadline.setText(data.get(position).getDeadline());
         int id = data.get(position).getProjectId();
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Token",0);
+        String token = sharedPreferences.getString("Token",null);
+        Retrofit retrofit = Api.getInstance().getApi();
+        //web实例
+        ProjectAPI projectAPI = retrofit.create(ProjectAPI.class);
+        //call实例
+        Call<TaskPercent> call = projectAPI.taskp(token, new ProjectData(Integer.toString(id)));
+        call.enqueue(new retrofit2.Callback<TaskPercent>() {
+            @Override
+            public void onResponse(Call<TaskPercent> call, Response<TaskPercent> response) {
+                //拉一个List下来
+                TaskPercent data = response.body();
+                holder.mCirclePercentBar.setPercentData(data.getData(), new DecelerateInterpolator());
+            }
+            @Override
+            public void onFailure(Call<TaskPercent> call, Throwable t) {
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,10 +101,12 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.VH> {
 
         public TextView projectName;
         public TextView projectDeadline;
+        public CirclePercentBar mCirclePercentBar;
         public VH(View itemView) {
             super(itemView);
             projectName = itemView.findViewById(R.id.project_name);
             projectDeadline = itemView.findViewById(R.id.project_deadline);
+            mCirclePercentBar = itemView.findViewById(R.id.circle_bar);
         }
 
     }

@@ -75,6 +75,7 @@ public class MyTeamFragmentVertical extends Fragment {
         });
     }
 
+
     private void initRecyclerView() {
         recyclerView = view.findViewById(R.id.mt_recyclerview2);
         verticalAdapter = new VerticalAdapter(getActivity(),mList);
