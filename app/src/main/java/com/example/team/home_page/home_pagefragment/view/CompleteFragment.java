@@ -179,7 +179,10 @@ public class CompleteFragment extends Fragment implements Callback4 {
 
 
                 } else {
-                    showCode(response.body().getCode());
+                    if(response.body() != null){
+                        showCode(response.body().getCode());
+                    }
+
                     Toast.makeText(getActivity(), "搞错了,再来", Toast.LENGTH_SHORT).show();
 
                 }

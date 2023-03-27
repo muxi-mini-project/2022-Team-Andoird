@@ -126,7 +126,7 @@ public class TeamFragment extends Fragment implements Callback2 {
         public void onClick(View v) {
 
             Intent intent= new Intent(getActivity(), MyTeamActivity.class);
-            intent.putExtra("team_id",Integer.toString(team.getTeam_id()));
+            intent.putExtra("team_id",Integer.toString(team1.getTeam_id()));
 
             startActivity(intent);
         }
@@ -208,8 +208,11 @@ public class TeamFragment extends Fragment implements Callback2 {
 
 
                 } else {
-                    showMsg(response.body().getMessage());
-                    showCode(response.body().getCode());
+                    if(response.body()!=null){
+                        showMsg(response.body().getMessage());
+                        showCode(response.body().getCode());
+                    }
+
                     Toast.makeText(getActivity(), "搞错了,再来", Toast.LENGTH_SHORT).show();
 
                 }

@@ -183,8 +183,11 @@ public class InCompleteFragment extends Fragment implements Callback4 {
                     UpdateUI();
 
                 } else {
-                    showCode(response.body().getCode());
-                    Toast.makeText(getActivity(), "搞错了,再来", Toast.LENGTH_SHORT).show();
+                    if(response.body() != null){
+                        showCode(response.body().getCode());
+                        Toast.makeText(getActivity(), "搞错了,再来", Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }
             }

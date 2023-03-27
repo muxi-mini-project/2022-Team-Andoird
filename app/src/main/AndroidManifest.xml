@@ -26,6 +26,7 @@
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
 
     <application
+        android:name=".MyApplication"
         android:preserveLegacyExternalStorage="true"
         android:allowBackup="true"
         android:icon="@mipmap/title"
@@ -51,6 +52,7 @@
         <activity android:name=".user.view.ChangeNickActivity"></activity>
         <activity android:name=".login.logining.LoginActivity"></activity>
         <activity android:name=".team.view.CreateActivity"></activity>
+        <activity android:name=".user.view.AboutActivity"></activity>
 <!--        <activity android:name=".team.view.ShareTeamActivity"></activity>-->
         <activity android:name=".teamwork.Task.TaskActivity"></activity>
         <activity android:name=".teamwork.MyTeam.MyTeamActivity"></activity>
