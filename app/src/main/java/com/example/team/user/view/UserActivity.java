@@ -45,6 +45,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -71,8 +72,6 @@ public class UserActivity extends StatusBar implements IUserView {
     private Uri imageUri;
     private String imagePath;
 
-    private String base64Pic;
-    private Bitmap orc_bitmap;
 
     private ImageUtil u = new ImageUtil(this);
 
@@ -194,15 +193,14 @@ public class UserActivity extends StatusBar implements IUserView {
         switch(requestCode){
             case 1:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    showMsg("获取摄像头权限~");
+                    showMsg("已获取摄像头权限~");
                     //doTake();//去往拍照功能
                 } else {
                     Toast.makeText(this, "你没有获得摄像头权限~", Toast.LENGTH_SHORT).show();
                 }
-                int a;
             case 2:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    showMsg("获取访问相册权限~");
+                    showMsg("已获取访问相册权限~");
                 } else {
                     Toast.makeText(this, "你没有获得访问相册的权限~", Toast.LENGTH_SHORT).show();
                 }
@@ -229,9 +227,7 @@ public class UserActivity extends StatusBar implements IUserView {
             bottomSheetDialog.cancel();
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                 // 执行拍照
-                //doTake();
                 Log.d("UserActivity","test");
-//                userPresenter.takePhoto(TAKE_PHOTO);
                 u.takePhoto(TAKE_PHOTO);
             } else {
                 // 申请权限
@@ -240,9 +236,8 @@ public class UserActivity extends StatusBar implements IUserView {
         });
         //打开相册
         tv_openAlbum.setOnClickListener(v -> {
-            //userPresenter.selectPhoto(SELECT_PHOTO);
-            u.openAlbum(SELECT_PHOTO);
             showMsg("打开相册");
+            u.openAlbum(SELECT_PHOTO);
             bottomSheetDialog.cancel();
         });
         //取消
@@ -307,11 +302,11 @@ public class UserActivity extends StatusBar implements IUserView {
     @Override
     public void initAvatar(String url){
         try{
-            URL murl = new URL(url);
+            URL murl = new URL("http://" + url);
             Glide.with(this).load(murl)
                     .apply(new RequestOptions().placeholder(R.mipmap.tou_xiang)).into(iv_avatar);
-        }catch(Exception e){
-            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            Log.d(TAG,e.toString());
         }
     }
 

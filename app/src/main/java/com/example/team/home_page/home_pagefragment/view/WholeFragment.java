@@ -168,7 +168,7 @@ public class WholeFragment extends Fragment implements Callback4 {
                     task1 = response.body().getTask();
                     WebRequest2(token);
                 } else {
-                    showCode(response.body().getCode());
+                    //showCode(response.body().getCode());
                     Toast.makeText(getActivity(), "搞错了,再来", Toast.LENGTH_SHORT).show();
 
                 }
